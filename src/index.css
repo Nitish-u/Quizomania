@@ -1,0 +1,13 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --black100: #212427;
+    --black75: rgb(33, 36, 39, 0.75);
+    --black50: rgb(33, 36, 39, 0.50);
+    --black25: rgb(33, 36, 39, 0.25);
+    --black10: rgb(33, 36, 39, 0.10);
+    --offWhite: #faf9f6
+}
