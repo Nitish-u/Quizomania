@@ -1,8 +1,9 @@
-import NavBar from "./components/NavBar/navbar"
+import QuizCard from "./components/QuizCard/quizCard"
+
 function App() {
   return (
     <>
-    <NavBar/>
+    <QuizCard />
     </>
   )
 }
