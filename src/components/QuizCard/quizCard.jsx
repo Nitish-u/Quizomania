@@ -6,7 +6,7 @@ import saveIcon from "../../assets/svgs/bookmark.svg"
 
 export default function QuizCard() {
   return (
-    <div className="cardContainer w-[256px] rounded-2xl overflow-hidden m-16 customShadow relative">
+    <div className="cardContainer w-[256px] rounded-2xl overflow-hidden m-16 customShadowForQuizCard relative">
     <div className="interations flex absolute gap-4 right-4 top-3">
         <div className="likeBtnContainer flex gap-1 items-center">
             <img src={heartIcon} alt="like icon" className="h-4" />

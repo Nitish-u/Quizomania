@@ -1,10 +1,10 @@
-import QuizCard from "./components/QuizCard/quizCard"
+import Footer from "./components/footer/footer"
 
 function App() {
   return (
-    <>
-    <QuizCard />
-    </>
+    <div className="h-dvh flex items-end">
+    <Footer />
+    </div>
   )
 }
 
