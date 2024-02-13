@@ -1,10 +1,8 @@
-import Footer from "./components/footer/footer"
+import HomePage from "./pages/home page/homePage"
 
 function App() {
   return (
-    <div className="h-dvh flex items-end">
-    <Footer />
-    </div>
+    <HomePage />
   )
 }
 
