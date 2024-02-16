@@ -1,9 +1,15 @@
-import HomePage from "./pages/home page/homePage"
+import HomePage from "./pages/home page/homePage";
+import Footer from "./components/footer/footer";
+import NavBar from "./components/NavBar/navbar";
 
 function App() {
   return (
-    <HomePage />
-  )
+    <div className="px-10 py-20">
+      <NavBar />
+    </div>
+    // <HomePage />
+    // <Footer />
+  );
 }
 
-export default App
+export default App;
