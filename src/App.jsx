@@ -1,14 +1,8 @@
-import HomePage from "./pages/home page/homePage";
-import Footer from "./components/footer/footer";
-import NavBar from "./components/NavBar/navbar";
+import SlidingMenu from "./components/sliding menu/slidingMenu";
 
 function App() {
   return (
-    <div className="px-10 py-20">
-      <NavBar />
-    </div>
-    // <HomePage />
-    // <Footer />
+    <SlidingMenu />
   );
 }
 

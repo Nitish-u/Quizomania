@@ -19,3 +19,15 @@
 .customShadowForFooter{
     box-shadow: 1px -1px 16px var(--black25);
 }
+
+button:hover{
+    @apply bg-[var(--offWhite)] border-2 border-black text-black transition-all duration-300;
+}
+
+button:hover svg path{
+    stroke: black;
+}
+
+.profilePicShadow{
+    box-shadow: 0 0 16px var(--black25);
+}
