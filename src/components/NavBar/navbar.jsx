@@ -6,9 +6,10 @@ import darkThemeIcon from "../../assets/svgs/moon_svgrepo.com.svg";
 import profilePic from "../../assets/svgs/avatar-default_svgrepo.com.svg";
 import searchIcon from "../../assets/svgs/search_svgrepo.com.svg";
 import plusIcon from "../../assets/svgs/plus-svgrepo-com.svg";
+import crossIcon from "../../assets/svgs/cross-icon.svg"
 import { useState } from "react";
 
-export default function NavBar() {
+export default function NavBar({ setIsOpen, isOpen }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const black10 = "--black10";
@@ -23,14 +24,22 @@ export default function NavBar() {
     }
   }
 
+  function menuOpener(){
+    if(isOpen){
+      setIsOpen(false);
+    }else{
+      setIsOpen(true);
+    }
+  }
+
   return (
     <>
       <nav
         className={`bg-[var(--offWhite)] p-2 border-2 border-[var(--black100)] px-4 rounded-2xl flex justify-between items-center`}
       >
         <div className="left flex gap-2 items-center">
-          <div className="hamburger">
-            <img src={menuIcon} alt="menu icon" />
+          <div className="hamburger cursor-pointer active:bg-[var(--black25)] p-2 rounded-full" onClick={menuOpener}>
+            <img src={isOpen ? crossIcon : menuIcon} alt="menu icon" className="h-8 w-8"/>
           </div>
           <div className="logo text-4xl font-extralight leading-none sm:-mt-[6px]">
             QUIZOMANIA
