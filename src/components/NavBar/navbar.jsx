@@ -41,7 +41,7 @@ export default function NavBar({ setIsOpen, isOpen }) {
           <div className="hamburger cursor-pointer active:bg-[var(--black25)] p-2 rounded-full" onClick={menuOpener}>
             <img src={isOpen ? crossIcon : menuIcon} alt="menu icon" className="h-8 w-8"/>
           </div>
-          <div className="logo text-4xl font-extralight leading-none sm:-mt-[6px]">
+          <div className="logo sm:text-4xl text-3xl font-light sm:font-extralight leading-none sm:-mt-[6px]">
             QUIZOMANIA
           </div>
         </div>

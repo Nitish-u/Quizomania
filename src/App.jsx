@@ -1,10 +1,10 @@
-// import SlidingMenu from "./components/sliding menu/slidingMenu";
-import Homepage from "./pages/home page/homePage"
+import OptionsMaker from "./components/Options maker/OptionsMaker";
 
 function App() {
   return (
-    // <SlidingMenu />
-    <Homepage />
+    <div className="w-4/5 m-auto h-[45rem]">
+      <OptionsMaker />
+    </div>
   );
 }
 

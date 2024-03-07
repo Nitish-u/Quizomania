@@ -35,3 +35,67 @@ button:active{
 .profilePicShadow{
     box-shadow: 0 0 16px var(--black25);
 }
+
+/* text editor styles */
+
+.functionsContainer div img{
+    @apply w-8 max-h-8 active:bg-[var(--black25)] rounded-md cursor-pointer;
+}
+
+.functionsContainer div{
+    background-color: white;
+    padding: 0 5px;
+    @apply h-fit m-0;
+}
+
+ul{
+    @apply list-disc;
+}
+
+ol{
+    @apply list-decimal;
+}
+
+li{
+    @apply ml-8;
+}
+
+#editor img{
+    @apply w-60 m-auto;
+}
+
+#editor a{
+    @apply text-blue-700 underline;
+    font-size: 1rem;
+    border-radius:0;
+    padding:0;
+    line-height:0;
+}
+
+.font-sizes{
+    @apply p-2 hover:bg-[var(--black25)] cursor-pointer;
+}
+
+.functionalLetters{
+    @apply font-mono text-3xl px-4 py-1 select-none rounded-lg active:bg-[var(--black25)] cursor-pointer;
+}
+
+.teerStyles{
+    @apply h-fit py-2 px-1 rounded-lg active:bg-[var(--black25)] cursor-pointer;
+}
+
+.pipe{
+    @apply text-3xl -translate-y-1;
+}
+
+.alignmentIcons{
+    @apply p-2 w-full cursor-pointer active:bg-[var(--black25)] rounded-lg;
+}
+
+.otherFunctionalIcons{
+    @apply w-11 rounded-lg active:bg-[var(--black25)];
+}
+
+.underline, .bold, .italic{
+    @apply font-mono text-3xl px-4 py-1 select-none rounded-lg active:bg-[var(--black25)] cursor-pointer;
+}
