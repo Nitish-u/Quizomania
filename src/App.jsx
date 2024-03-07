@@ -1,10 +1,8 @@
-import OptionsMaker from "./components/Options maker/OptionsMaker";
+import HomePage from "./pages/home page/homePage"
 
 function App() {
   return (
-    <div className="w-4/5 m-auto h-[45rem]">
-      <OptionsMaker />
-    </div>
+    <HomePage/>
   );
 }
 

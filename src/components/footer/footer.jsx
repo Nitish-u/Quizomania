@@ -1,22 +1,24 @@
 import { useState } from "react";
-import plusIcon from "../../assets/svgs/plus-svgrepo-com.svg";
 import filterIcon from "../../assets/svgs/filter icon.svg";
-import searchIcon from "../../assets/svgs/search_svgrepo.com.svg";
 import lightThemeIcon from "../../assets/svgs/sun-2_svgrepo.com.svg";
 import darkThemeIcon from "../../assets/svgs/moon_svgrepo.com.svg";
+
+import { GoSearch } from "react-icons/go";
+import { FaPlus } from "react-icons/fa6";
+import { IoSunny, IoMoon } from "react-icons/io5";
+
 
 export default function Footer() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [searchBarClicked, setSearchBarClicked] = useState(false);
 
   function searchBarWidthHndler(e) {
-    if(searchBarClicked){
+    if (searchBarClicked) {
       setSearchBarClicked(false);
-    }else{
+    } else {
       setSearchBarClicked(true);
     }
-}
-
+  }
 
   function themeToggleHndler(e) {
     if (isDarkMode) {
@@ -32,29 +34,42 @@ export default function Footer() {
       </div>
       <div className="mobileButtonsContainer flex gap-4 items-center sm:hidden justify-center w-full">
         <label htmlFor="searchBar" className="relative">
-          <img
-            src={searchIcon}
-            alt="search icon"
-            className="absolute top-[0.29rem] right-[0.2rem] bg-white rounded-full cursor-pointer" onClick={searchBarWidthHndler}/>
+          <GoSearch
+            className="absolute top-[0.4rem] right-[0.3rem] bg-white rounded-full cursor-pointer"
+            size="1.8rem"
+            onClick={searchBarWidthHndler}
+          />
           <input
             id="searchBar"
             type="text"
             placeholder="search quizes"
-            className={`${searchBarClicked ? "w-52" : "w-10"} h-10 p-2 border-2 border-[var(--black100)] rounded-full transition-all duration-500 ease-in-out`} />
+            className={`${
+              searchBarClicked ? "w-[19rem]" : "w-10"
+            } h-10 p-2 border-2 border-[var(--black100)] rounded-full transition-all duration-500 ease-in-out`}
+          />
         </label>
-        <button className={`bg-black w-10 h-10 rounded-full p-1 ${searchBarClicked ? "hidden" : ""}`}>
-          <img src={plusIcon} alt="plus icon" />
+        <button
+          className={`bg-black text-white active:text-black w-10 h-10 rounded-full p-1 ${
+            searchBarClicked ? "hidden" : ""
+          }`}
+        >
+          <FaPlus size="1.5rem" className="m-auto" />
         </button>
         <div className={`filterIcon w-10 ${searchBarClicked ? "hidden" : ""}`}>
           <img src={filterIcon} alt="filter icon" className="w-full" />
         </div>
-        <div className={`cursor-pointer themeToggleContainer border-2 border-[var(--black100)] p-[0.4rem] min-w-24 rounded-full ${searchBarClicked ? "hidden" : ""}`} onClick={themeToggleHndler}>
-          <div className={`currentTheme border-2 border-[var(--black100)] w-fit rounded-full transition-all duration-500 ease-in-out ${ isDarkMode ? "translate-x-[3.25rem]" : "" }`}>
-            <img
-              src={isDarkMode ? darkThemeIcon : lightThemeIcon}
-              alt="light theme icon"
-              className="scale-75"
-            />
+        <div
+          className={`cursor-pointer themeToggleContainer border-2 border-[var(--black100)] p-[0.4rem] min-w-24 rounded-full ${
+            searchBarClicked ? "hidden" : ""
+          }`}
+          onClick={themeToggleHndler}
+        >
+          <div
+            className={`currentTheme p-1 border-2 border-[var(--black100)] w-fit rounded-full transition-all duration-500 ease-in-out ${
+              isDarkMode ? "translate-x-[3.1rem]" : ""
+            }`}
+          >
+            {isDarkMode ? <IoMoon size="1.2rem" /> : <IoSunny size="1.2rem" />}
           </div>
         </div>
       </div>
