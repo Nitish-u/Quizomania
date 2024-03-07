@@ -1,8 +1,5 @@
 import { useState } from "react";
 import filterIcon from "../../assets/svgs/filter icon.svg";
-import lightThemeIcon from "../../assets/svgs/sun-2_svgrepo.com.svg";
-import darkThemeIcon from "../../assets/svgs/moon_svgrepo.com.svg";
-
 import { GoSearch } from "react-icons/go";
 import { FaPlus } from "react-icons/fa6";
 import { IoSunny, IoMoon } from "react-icons/io5";
