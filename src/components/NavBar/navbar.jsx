@@ -1,13 +1,14 @@
-import menuIcon from "../../assets/svgs/hamburger-menu_svgrepo.com.svg";
 import filterIcon from "../../assets/svgs/filter icon.svg";
-import createBtnIcon from "../../assets/svgs/clipboard-list-alt_svgrepo.com.svg";
-import lightThemeIcon from "../../assets/svgs/sun-2_svgrepo.com.svg";
-import darkThemeIcon from "../../assets/svgs/moon_svgrepo.com.svg";
 import profilePic from "../../assets/svgs/avatar-default_svgrepo.com.svg";
-import searchIcon from "../../assets/svgs/search_svgrepo.com.svg";
-import plusIcon from "../../assets/svgs/plus-svgrepo-com.svg";
-import crossIcon from "../../assets/svgs/cross-icon.svg"
 import { useState } from "react";
+
+import { GoSearch } from "react-icons/go"
+import { FaPlus } from "react-icons/fa6";
+import { IoSunny, IoMoon } from "react-icons/io5";
+import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
+import { LuClipboardList } from "react-icons/lu";
+
+
 
 export default function NavBar({ setIsOpen, isOpen }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -39,7 +40,7 @@ export default function NavBar({ setIsOpen, isOpen }) {
       >
         <div className="left flex gap-2 items-center">
           <div className="hamburger cursor-pointer active:bg-[var(--black25)] p-2 rounded-full" onClick={menuOpener}>
-            <img src={isOpen ? crossIcon : menuIcon} alt="menu icon" className="h-8 w-8"/>
+            {isOpen ? <RxCross2 size="1.7rem" /> : <RxHamburgerMenu size="1.7rem" />}
           </div>
           <div className="logo sm:text-4xl text-3xl font-light sm:font-extralight leading-none sm:-mt-[6px]">
             QUIZOMANIA
@@ -48,11 +49,7 @@ export default function NavBar({ setIsOpen, isOpen }) {
         <div className="right flex items-center gap-2">
           <div className="thingsTokeepUptoTabScreen hidden sm:flex items-center gap-2">
             <label htmlFor="searchBar" className="relative">
-              <img
-                src={searchIcon}
-                alt="search icon"
-                className="absolute top-[0.3rem] right-1"
-              />
+              <GoSearch className="absolute top-[0.6rem] right-2" size="1.5rem" strokeWidth="0.5"  />
               <input
                 id="searchBar"
                 type="text"
@@ -71,23 +68,25 @@ export default function NavBar({ setIsOpen, isOpen }) {
             ></div>
           </div>
           <button
-            className={`hidden md:block lg:hidden w-10 p-2 bg-[var(--black100)] rounded-full`}
+            className={`hidden md:block lg:hidden p-2 bg-black text-white border-2 hover:bg-white hover:text-black rounded-full`}
           >
-            <img src={plusIcon} alt="" />
+            <FaPlus size="1.5rem" />
           </button>
           <div
             className={`parallelStick hidden md:block lg:hidden w-1 h-3 rounded-sm bg-[var(--black10)]`}
           ></div>
           <div
             className={`currentTheme hidden md:block lg:hidden border-2 border-[var(--black100)] w-fit rounded-full p-2`}
+            onClick={themeToggleHndler}
           >
-            <img src={lightThemeIcon} alt="light theme icon" />
+            {isDarkMode ? <IoMoon size="1.2rem" /> : <IoSunny size="1.2rem" />}
           </div>
           <div className="thingsToKeepUptoWideScreen hidden lg:flex items-center gap-2">
             <button
-              className={`bg-[var(--black100)] text-[var(--offWhite)] border-2 border-[var(--black100)] flex p-2 px-6 rounded-full gap-2 hover:bg-white hover:text-black transition-colors duration-500`}
+              className={`bg-[var(--black100)] text-[var(--offWhite)] border-2 border-[var(--black100)] flex items-center p-2 px-6 rounded-full gap-2 hover:bg-white hover:text-black transition-colors duration-500`}
             >
-              CREATE <img src={createBtnIcon} alt=" create quiz button icon" />
+              CREATE 
+              {<LuClipboardList size="1.2rem" />}
             </button>
             <div
               className={`parallelStick w-1 h-3 rounded-sm bg-[var(--black10)]`}
@@ -97,15 +96,11 @@ export default function NavBar({ setIsOpen, isOpen }) {
               onClick={themeToggleHndler}
             >
               <div
-                className={`currentTheme border-2 border-[var(--black100)] w-fit rounded-full transition-all duration-500 ease-in-out ${
+                className={`currentTheme p-1 border-2 border-[var(--black100)] w-fit rounded-full transition-all duration-500 ease-in-out ${
                   isDarkMode ? "translate-x-[3.25rem]" : ""
                 }`}
               >
-                <img
-                  src={isDarkMode ? darkThemeIcon : lightThemeIcon}
-                  alt="light theme icon"
-                  className="scale-75"
-                />
+                {isDarkMode ? <IoMoon size="1.1rem" /> : <IoSunny size="1.1rem" />}
               </div>
             </div>
             <div
