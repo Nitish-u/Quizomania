@@ -1,19 +1,24 @@
+//these things will be sent as props and will be images
 import quizThumbnail from "../../assets/images/unsplash_c8h0n7fSTqs.png";
 import profilePic from "../../assets/svgs/avatar-default_svgrepo.com.svg";
-import optionsIcon from "../../assets/svgs/options-vertical_svgrepo.com.svg";
-import heartIcon from "../../assets/svgs/heart.svg";
-import saveIcon from "../../assets/svgs/bookmark.svg";
+
+import { SlOptionsVertical } from "react-icons/sl";
+import { FaRegHeart } from "react-icons/fa";
+import { MdOutlineBookmarkBorder } from "react-icons/md";
+
+
+
 
 export default function QuizCard() {
   return (
     <div className="cardContainer w-full max-w-[256px] sm:w-[222px] h-fit rounded-2xl overflow-hidden customShadowForQuizCard relative">
       <div className="interations flex absolute gap-4 right-4 top-3">
-        <div className="likeBtnContainer flex gap-1 items-center">
-          <img src={heartIcon} alt="like icon" className="h-4" />
+        <div className="likeBtnContainer flex gap-1 items-center text-white">
+          {<FaRegHeart />}
           <div className="likesCount text-white text-xs">3.4k</div>
         </div>
-        <div className="saveBtnContainer flex gap-1 items-center">
-          <img src={saveIcon} alt="save icon" className="h-4" />
+        <div className="saveBtnContainer flex gap-1 items-center text-white">
+          {<MdOutlineBookmarkBorder size="1.2rem" />}
           <div className="saveCount text-white text-xs">2.8k</div>
         </div>
       </div>
@@ -44,7 +49,7 @@ export default function QuizCard() {
             <div className="publisherUsername text-md">thecky guy</div>
           </div>
           <div className="options">
-            <img src={optionsIcon} alt="options icon" />
+            {<SlOptionsVertical />}
           </div>
         </div>
       </div>
