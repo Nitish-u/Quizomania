@@ -1,8 +1,8 @@
-import QuestionMaker from "./components/Question maker/QuestionMaker"
+import HomePage from "./pages/home page/homePage"
 
 function App() {
   return (
-    <QuestionMaker />
+    <HomePage />
   );
 }
 

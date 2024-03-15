@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <>
       <SlidingMenu isOpen={menuClicked}/>
-      <div className="parent h-dvh md:p-4 bg-[var(--offWhite)]">
+      <div className="parent h-dvh md:p-4 bg-[var(--offWhite)] select-none">
         <div className="parentContainerOfHomePage p-4 pb-0 md:border-2 border-black rounded-3xl flex flex-col gap-4 h-full">
           <NavBar isOpen={menuClicked} setIsOpen={setMenuClicked} />
           <div className="quizesContainer h-full p-4 border-2 border-black rounded-2xl overflow-y-scroll">
