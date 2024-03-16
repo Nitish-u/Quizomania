@@ -83,7 +83,7 @@ export default function NavBar({ setIsOpen, isOpen }) {
           </div>
           <div className="thingsToKeepUptoWideScreen hidden lg:flex items-center gap-2">
             <button
-              className={`bg-[var(--black100)] text-[var(--offWhite)] border-2 border-[var(--black100)] flex items-center p-2 px-6 rounded-full gap-2 hover:bg-white hover:text-black transition-colors duration-500`}
+              className={`bg-[var(--black100)] text-[var(--offWhite)] border-2 border-[var(--black100)] flex items-center p-2 px-6 rounded-full gap-2 hover:bg-white hover:text-black transition-colors duration-500 active:bg-slate-200`}
             >
               CREATE 
               {<LuClipboardList size="1.2rem" />}
