@@ -16,7 +16,7 @@ export default function SlidingMenu({ isOpen }) {
         isOpen ? "translate-x-0" : ""
       } transition-transform duration-500`}
     >
-      <div className="profilePic p-4 rounded-full profilePicShadow relative">
+      <div className="profilePic p-4 rounded-full profilePicShadow relative hover:shadow-none transition-shadow duration-700">
         <img
           src={profilePic}
           alt="profile pic"
