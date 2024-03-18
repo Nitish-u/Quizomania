@@ -29,7 +29,7 @@ button:hover svg path{
 }
 
 button:active{
-    @apply active:bg-slate-200;
+    @apply active:bg-slate-400;
 }
 
 .profilePicShadow{

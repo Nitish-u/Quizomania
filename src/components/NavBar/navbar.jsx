@@ -1,16 +1,16 @@
 import filterIcon from "../../assets/svgs/filter icon.svg";
 import profilePic from "../../assets/svgs/avatar-default_svgrepo.com.svg";
 import { useState } from "react";
+import SlidingMenu from "../../components/sliding menu/slidingMenu";
 
-import { GoSearch } from "react-icons/go"
+import { GoSearch } from "react-icons/go";
 import { FaPlus } from "react-icons/fa6";
 import { IoSunny, IoMoon } from "react-icons/io5";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { LuClipboardList } from "react-icons/lu";
 
-
-
-export default function NavBar({ setIsOpen, isOpen }) {
+export default function NavBar() {
+  const [menuClicked, setMenuClicked] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   const black10 = "--black10";
@@ -25,22 +25,26 @@ export default function NavBar({ setIsOpen, isOpen }) {
     }
   }
 
-  function menuOpener(){
-    if(isOpen){
-      setIsOpen(false);
-    }else{
-      setIsOpen(true);
-    }
+  function menuOpener() {
+    setMenuClicked(!menuClicked);
   }
 
   return (
     <>
+      <SlidingMenu menuClicked={menuClicked} />
       <nav
         className={`bg-[var(--offWhite)] p-2 border-2 border-[var(--black100)] px-4 rounded-2xl flex justify-between items-center`}
       >
         <div className="left flex gap-2 items-center">
-          <div className="hamburger cursor-pointer active:bg-[var(--black25)] p-2 rounded-full" onClick={menuOpener}>
-            {isOpen ? <RxCross2 size="1.7rem" /> : <RxHamburgerMenu size="1.7rem" />}
+          <div
+            className="hamburger cursor-pointer active:bg-[var(--black25)] p-2 rounded-full"
+            onClick={menuOpener}
+          >
+            {menuClicked ? (
+              <RxCross2 size="1.7rem" />
+            ) : (
+              <RxHamburgerMenu size="1.7rem" />
+            )}
           </div>
           <div className="logo sm:text-4xl text-3xl font-light sm:font-extralight leading-none sm:-mt-[6px]">
             QUIZOMANIA
@@ -49,7 +53,11 @@ export default function NavBar({ setIsOpen, isOpen }) {
         <div className="right flex items-center gap-2">
           <div className="thingsTokeepUptoTabScreen hidden sm:flex items-center gap-2">
             <label htmlFor="searchBar" className="relative">
-              <GoSearch className="absolute top-[0.6rem] right-2" size="1.5rem" strokeWidth="0.5"  />
+              <GoSearch
+                className="absolute top-[0.6rem] right-2"
+                size="1.5rem"
+                strokeWidth="0.5"
+              />
               <input
                 id="searchBar"
                 type="text"
@@ -85,7 +93,7 @@ export default function NavBar({ setIsOpen, isOpen }) {
             <button
               className={`bg-[var(--black100)] text-[var(--offWhite)] border-2 border-[var(--black100)] flex items-center p-2 px-6 rounded-full gap-2 hover:bg-white hover:text-black transition-colors duration-500 active:bg-slate-200`}
             >
-              CREATE 
+              CREATE
               {<LuClipboardList size="1.2rem" />}
             </button>
             <div
@@ -100,7 +108,11 @@ export default function NavBar({ setIsOpen, isOpen }) {
                   isDarkMode ? "translate-x-[3.25rem]" : ""
                 }`}
               >
-                {isDarkMode ? <IoMoon size="1.1rem" /> : <IoSunny size="1.1rem" />}
+                {isDarkMode ? (
+                  <IoMoon size="1.1rem" />
+                ) : (
+                  <IoSunny size="1.1rem" />
+                )}
               </div>
             </div>
             <div

@@ -1,8 +1,7 @@
-import SolutionMaker from "./components/Solution maker/solutionMaker"
 
 function App() {
   return (
-    <SolutionMaker />
+    <h1>something</h1>
   );
 }
 

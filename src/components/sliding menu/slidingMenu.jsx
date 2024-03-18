@@ -5,7 +5,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { LuClipboardList } from "react-icons/lu";
 import { MdOutlineBookmarkBorder, MdOutlineEdit } from "react-icons/md";
 
-export default function SlidingMenu({ isOpen }) {
+export default function SlidingMenu({ menuClicked }) {
   const [edit, setEdit] = useState(false);
   function showEditOption() {
     setEdit(!edit);
@@ -13,7 +13,7 @@ export default function SlidingMenu({ isOpen }) {
   return (
     <div
       className={`menuContainer select-none w-fit p-4 rounded-3xl text-center flex flex-col items-center gap-2 customShadowForQuizCard absolute z-10 left-12 top-24 -translate-x-80 bg-white ${
-        isOpen ? "translate-x-0" : ""
+        menuClicked ? "translate-x-0" : ""
       } transition-transform duration-500`}
     >
       <div className="profilePic p-4 rounded-full profilePicShadow relative hover:shadow-none transition-shadow duration-700">
@@ -25,7 +25,7 @@ export default function SlidingMenu({ isOpen }) {
         <div className="text-slate-700 opacity-0 hover:opacity-100 transition-opacity duration-700 cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-slate-200 bg-opacity-90 flex items-center justify-center rounded-full" onClick={showEditOption}>
           <MdOutlineEdit size="2rem" />
         </div>
-        <div className={`profileActions bg-white rounded-xl absolute shadow-2xl -bottom-16 -right-28 w-36 overflow-hidden cursor-pointer ${isOpen ? edit ? "" : "hidden" : "hidden" }`}>
+        <div className={`profileActions bg-white rounded-xl absolute shadow-2xl -bottom-16 -right-28 w-36 overflow-hidden cursor-pointer ${menuClicked ? edit ? "" : "hidden" : "hidden" }`}>
           <p className="px-6 py-2 hover:bg-slate-200 active:bg-slate-300" onClick={showEditOption}>change pic</p>
           <p className="px-6 py-2 hover:bg-slate-200 active:bg-slate-300" onClick={showEditOption}>edit profile</p>
         </div>
