@@ -1,10 +1,9 @@
-import EditorFunc from "./components/Editor functionalities comp/EditorFuncComp";
-import Editor from "./components/Editable Area/editableAreaComp";
+import QuizMakerPage from "./pages/Quiz maker page/QuizMakerPage";
 
 function App() {
   return (
     <>
-      <EditorFunc />
+      <QuizMakerPage />
     </>
   );
 }
