@@ -1,7 +1,11 @@
+import EditorFunc from "./components/Editor functionalities comp/EditorFuncComp";
+import Editor from "./components/Editable Area/editableAreaComp";
 
 function App() {
   return (
-    <h1>something</h1>
+    <>
+      <EditorFunc />
+    </>
   );
 }
 

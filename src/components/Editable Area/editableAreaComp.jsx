@@ -16,7 +16,10 @@ export default function ({ heading, placeHolder, height, maxHeight, onFocusHandl
           contentEditable
           style={{height:height, maxHeight: maxHeight, minHeight:'2.5rem'}}
           onChange={handleChange}
-          onFocusCapture={onFocusHandler}
+          onFocusCapture={() => {
+            setEditorText("");
+            onFocusHandler();
+          }}
           dangerouslySetInnerHTML={{ __html: editorText }}
         />
       </div>
