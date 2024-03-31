@@ -24,7 +24,7 @@
     }
     
     button:hover{
-        @apply bg-[var(--offWhite)] border-2 border-black text-black transition-all duration-300;
+        @apply bg-white border-2 border-black text-black transition-all duration-300;
     }
     
     button:hover svg path{
@@ -32,7 +32,7 @@
     }
     
     button:active{
-        @apply active:bg-slate-400;
+        @apply scale-95 duration-100;
     }
     
     .profilePicShadow{
