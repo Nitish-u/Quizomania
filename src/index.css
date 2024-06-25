@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root{
     --black100: #212427;
     --black75: rgb(33, 36, 39, 0.75);
@@ -9,6 +8,18 @@
     --black25: rgb(33, 36, 39, 0.25);
     --black10: rgb(33, 36, 39, 0.10);
     --offWhite: #faf9f6
+}
+
+::-webkit-scrollbar{
+    @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-thumb{
+    @apply bg-gray-800 rounded-full;
+}
+
+::-webkit-scrollbar-track{
+    @apply mt-1 px-1 bg-gray-300 rounded-full;
 }
 
 @layer components{
@@ -89,6 +100,7 @@
         @apply w-fit p-0;
     }
 }
+
 
 
 /* .font-sizes{

@@ -6,12 +6,9 @@ import { SlOptionsVertical } from "react-icons/sl";
 import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineBookmarkBorder } from "react-icons/md";
 
-
-
-
 export default function QuizCard() {
   return (
-    <div className="cardContainer w-full max-w-[256px] sm:w-[222px] h-fit rounded-2xl overflow-hidden customShadowForQuizCard relative">
+    <div className="cardContainer w-full h-fit rounded-2xl overflow-hidden customShadowForQuizCard relative break-inside-avoid mb-4">
       <div className="interations flex absolute gap-4 right-4 top-3">
         <div className="likeBtnContainer flex gap-1 items-center text-white">
           {<FaRegHeart />}
@@ -32,7 +29,7 @@ export default function QuizCard() {
       <div className="detailsSection m-3 mt-2 flex flex-col gap-2">
         <div className="quizDetails">
           <div className="heading text-2xl font-semibold">Heading</div>
-          <div className="quizDiscription text-sm">
+          <div className="quizDiscription text-sm line-clamp-3 text-gray-500">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea ut
             eligendi rem exercitationem, et quidem.
           </div>
@@ -49,7 +46,7 @@ export default function QuizCard() {
             <div className="publisherUsername text-md">thecky guy</div>
           </div>
           <div className="options">
-            {<SlOptionsVertical />}
+            <SlOptionsVertical className="p-2 rounded-full active:bg-gray-200 cursor-pointer" size="2rem"  />
           </div>
         </div>
       </div>

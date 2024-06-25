@@ -8,8 +8,10 @@ import { FaPlus } from "react-icons/fa6";
 import { IoSunny, IoMoon } from "react-icons/io5";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import { LuClipboardList } from "react-icons/lu";
+import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
+  const navigate = useNavigate();
   const [menuClicked, setMenuClicked] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -46,7 +48,7 @@ export default function NavBar() {
               <RxHamburgerMenu size="1.7rem" />
             )}
           </div>
-          <div className="logo sm:text-4xl text-3xl font-light sm:font-extralight leading-none sm:-mt-[6px]">
+          <div className="logo sm:text-4xl text-3xl font-light sm:font-extralight leading-none cursor-pointer" onClick={() => navigate("/")}>
             QUIZOMANIA
           </div>
         </div>
@@ -91,10 +93,10 @@ export default function NavBar() {
           </div>
           <div className="thingsToKeepUptoWideScreen hidden lg:flex items-center gap-2">
             <button
-              className={`bg-[var(--black100)] text-[var(--offWhite)] border-2 border-[var(--black100)] flex items-center p-2 px-6 rounded-full gap-2 hover:bg-white hover:text-black transition-colors duration-500 active:bg-slate-200`}
+              className={`bg-[var(--black100)] text-[var(--offWhite)] border-2 border-[var(--black100)] flex items-center p-2 px-6 rounded-full gap-2 hover:bg-white hover:text-black transition-colors duration-500 active:bg-slate-200`} onClick={() => navigate("/create")}
             >
               CREATE
-              {<LuClipboardList size="1.2rem" />}
+              <LuClipboardList className="-mt-1"  size="1.2rem" />
             </button>
             <div
               className={`parallelStick w-1 h-3 rounded-sm bg-[var(--black10)]`}

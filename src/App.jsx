@@ -1,24 +1,24 @@
-import QuestionCardComp from "./components/QuestionCardComp/QuestionCardComp";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import HomePage from "./pages/home page/homePage";
+import QuizMakerPage from "./pages/Quiz maker page/QuizMakerPage";
 
 function App() {
-  // const optionsArray = ["happy", "sad", "fine", "not good"];
-  const optionsArray = [
-    "Use a nested loop to iterate over the list of employees, calculating the sum of salaries for each department and then dividing by the count of employees in that department.",
-    "Utilize a hashmap data structure to group employees by department, then calculate the average salary for each group.",
-    "Sort the list of employees by department, then use a single loop to iterate over the sorted list, calculating the average salary for each department as you encounter a new department.",
-    "Apply a recursive function to traverse the list of employees, accumulating salaries for each department and calculating the average when reaching the end of the list.",
-  ];
-  return (
-    <div className="flex gap-4">
-      <QuestionCardComp
-        small={false}
-        type={"radio"}
-        question="Consider a scenario where you have a list of employees, each with their respective departments and salaries. You are tasked with finding the average salary of employees within each department. How would you approach solving this problem programmatically?"
-        explanation="Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates quam cumque iusto non quia consectetur natus qui placeat, sequi aliquam numquam officiis illo tenetur soluta. Eaque quisquam culpa magni itaque fugiat iusto, eligendi cumque modi voluptatem error odit aliquid praesentium, est voluptate expedita explicabo necessitatibus ratione enim neque nulla a illo. Architecto modi sunt perspiciatis veritatis voluptate repellendus delectus non culpa dicta, sed est ipsam. Iure dolorum nisi dolorem eveniet saepe exercitationem reprehenderit, quo quae animi, nihil perspiciatis corrupti iste veniam quis est autem a porro assumenda fugit vel architecto modi voluptates numquam itaque? Explicabo suscipit voluptates laudantium laboriosam pariatur velit et ad similique, numquam fugit maxime libero? Quaerat, dignissimos. Quis earum neque, vero porro odio provident corporis commodi reprehenderit! Cumque recusandae distinctio dolorum tempora dicta, sequi quibusdam nam enim quae inventore ex molestiae alias nobis suscipit quia quis ducimus eius tenetur sint magni omnis odit! Eum debitis dolorem recusandae, odit culpa, ducimus facilis tenetur distinctio labore rerum dicta eligendi quasi non, officiis quibusdam iste! Pariatur quas porro, ex explicabo minima labore magni consectetur, cumque quae eaque hic? Ullam, impedit beatae. Ad obcaecati adipisci labore delectus rerum blanditiis dolor iusto nemo. Dolorum animi deleniti veniam dolor reprehenderit! Et eligendi beatae optio exercitationem enim laudantium, aliquam mollitia. Similique architecto blanditiis quos, quia voluptatum eveniet explicabo, labore asperiores vel debitis dicta fugiat nam aut consequatur quam quae officia tenetur eaque totam, possimus optio? Totam, aspernatur. Nisi ab minima iure laboriosam magni tempore ullam sit iste culpa placeat doloremque, dolorum ipsum impedit dolor voluptatem quo earum aperiam accusantium, quod libero! Voluptatum quaerat sit similique in hic, repellendus ut alias ratione tenetur consequatur? Veritatis sapiente eos nostrum maxime earum quibusdam ex? Dolor accusantium praesentium tempore, quae architecto dicta obcaecati illo eaque. A quibusdam sit, temporibus quis voluptates officiis quasi officia quisquam sapiente distinctio saepe? Tenetur mollitia perferendis illo et eligendi, dolores, a quaerat iusto voluptatem deserunt sint optio adipisci, facilis consectetur est placeat dolorem autem nemo enim facere amet laudantium? Fuga laboriosam, exercitationem eos ad illo voluptatum doloremque eveniet blanditiis ex saepe amet est, in modi eligendi rem consectetur tempora eum et earum. Minus libero, eveniet dolore sequi repudiandae adipisci debitis unde dolor. Itaque, quos quidem praesentium nesciunt odio earum mollitia esse quod ad quas! Veniam hic aperiam quisquam natus possimus consequuntur, dolore, quae obcaecati provident accusamus quia a quod sint? Saepe odio officia, doloremque vitae nesciunt in sed eius, corrupti libero neque fugit fuga? Dolor expedita iusto recusandae voluptatem distinctio. Deleniti sequi consectetur fuga et itaque pariatur consequatur, minus placeat accusantium suscipit nemo ea laborum aliquid, vel voluptatem cumque veritatis tempore facilis quaerat corporis. Aut sunt enim error. Assumenda, ducimus, aspernatur commodi soluta, cum perspiciatis sit veritatis totam provident odit accusamus vero! Repellendus quam dolores asperiores explicabo sequi dolor quibusdam facere minima temporibus eveniet! Eveniet consectetur aliquid molestias! Eaque labore repudiandae architecto non dolores voluptatum neque cumque nam dolor, expedita consequuntur. Est illo itaque iste eligendi necessitatibus, quis, sint dolore minus possimus in aliquam incidunt ratione autem. Sed quis illum dolor sint? Quo?"
-        options={optionsArray}
-      />
-    </div>
-  );
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <HomePage />,
+      errorElement: (
+        <div className="h-full flex justify-center items-center flex-col">
+          <div className="heading text-9xl font-black">404</div>page not found!
+        </div>
+      ),
+    },
+    {
+      path: "/create",
+      element: <QuizMakerPage />,
+    },
+  ]);
+  return <RouterProvider router={router} />;
 }
 
 export default App;
