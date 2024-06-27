@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import EditableComp from "../../components/Editable Area/editableAreaComp";
 import EditorFuncComp from "../../components/Editor functionalities comp/EditorFuncComp";
 import OptionsComp from "../../components/Options Comp/OptionsComp";
@@ -8,7 +8,7 @@ import { ImParagraphJustify } from "react-icons/im";
 import { BsTextParagraph } from "react-icons/bs";
 import { LuClipboardList } from "react-icons/lu";
 
-export default function QuizMakersLeft() {
+export default function QuizMakersLeft({ questions, setQuestions }) {
   const [alignmentArrowClicked, setAlignmentArrowClicked] = useState(false);
   const [fontArrowClicked, setFontArrowClicked] = useState(false);
 
@@ -35,7 +35,7 @@ export default function QuizMakersLeft() {
     const questionType = e.currentTarget.innerText;
     const index = Number(e.currentTarget.getAttribute("id"));
     setQuestionType((prevState) => {
-      return { ...questionType, type: questionType, iconIndex: index };
+      return { ...prevState, type: questionType, iconIndex: index };
     });
     setOptionType(e.currentTarget.getAttribute("func-type"));
     setTypeSelectorClicked(false);
@@ -45,6 +45,36 @@ export default function QuizMakersLeft() {
     setAlignmentArrowClicked(false);
     setFontArrowClicked(false);
   }
+
+  const addQuestion = useCallback(() => {
+    const options = [];
+    const editableDivs = document.getElementsByClassName("editableDiv");
+    if (
+      editableDivs[0].innerText.trim() == "" ||
+      editableDivs[1].innerText.trim() == "" ||
+      editableDivs[0].innerText.trim() == "Enter your question here..." ||
+      editableDivs[1].innerText.trim() == "Enter your explanation here..."
+    ) {
+      alert("Please enter complete details to proceed!");
+    } else {
+      const optionElements = Array.from(
+        document.getElementsByClassName("optionData")
+      );
+      if (optionType == "checkbox" || optionType == "radio") {
+        optionElements.forEach((elem) => {
+          options.push(elem.innerHTML);
+        });
+      }
+      const questionData = {
+        type: optionType,
+        question: editableDivs[0].innerHTML,
+        explanation: editableDivs[1].innerHTML,
+        options,
+      };
+      setQuestions((prevState) => [...prevState, questionData]);
+    }
+  });
+
   return (
     <div className="functionalCompConatiner border-2 border-black rounded-xl rounded-tl-2xl p-4 relative flex flex-col gap-4 h-full max-w-[700px]">
       <div className="h-fit max-h-full flex flex-col gap-4">
@@ -105,13 +135,16 @@ export default function QuizMakersLeft() {
         <EditableComp
           heading="Question:-"
           placeHolder="Enter your question here..."
-          height="4rem"
+          height="8rem"
           maxHeight="fill-container"
           onFocusHandler={focusAction}
           title="something that tells about the answer"
         />
       </div>
-      <OptionsComp type={optionType} onFocusHandler={focusAction} />
+      <OptionsComp
+        type={optionType}
+        onFocusHandler={focusAction}
+      />
       <div className="self-end min-w-fit h-fit w-full flex flex-col gap-4">
         <EditableComp
           heading="Solution/Explanation:-"
@@ -121,7 +154,10 @@ export default function QuizMakersLeft() {
           onFocusHandler={focusAction}
           title="not necessary but good to have"
         />
-        <div className="w-full border-2 border-black rounded-3xl p-2 bg-slate-800 text-white flex justify-center items-center gap-1 ">
+        <div
+          className="w-full border-2 border-black rounded-3xl p-2 bg-slate-800 text-white flex justify-center items-center gap-1 "
+          onClick={addQuestion}
+        >
           <LuClipboardList />
           CREATE
         </div>
