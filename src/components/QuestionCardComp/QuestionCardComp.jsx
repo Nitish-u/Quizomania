@@ -18,7 +18,7 @@ export default function QuestionCardComp({
   }
 
   return (
-    <div className={`relative ${small ? "w-60" : "w-full"}`}>
+    <div className={`relative w-full break-inside-avoid mb-4`}>
       <div
         className={`QuestionContainer h-full ${
           openSolutionSection ? "rotatey" : ""
@@ -35,7 +35,7 @@ export default function QuestionCardComp({
         <div className="header flex items-center justify-between">
           <p className="text-sm">Question:</p>
           <button
-          title="View solution"
+            title="View solution"
             onClick={solutionRevealer}
             className={`border-2 rounded-full ${
               small
@@ -51,8 +51,11 @@ export default function QuestionCardComp({
             )}
           </button>
         </div>
-        <div className={`font-semibold ${small ? "text-sm" : "text-lg"}`}>
-          {question}
+        <div
+          className={`font-semibold ${small ? "text-lg" : "text-lg"}`}
+          dangerouslySetInnerHTML={{ __html: question }}
+        >
+          {/* {question} */}
         </div>
         <div className="AnswerContainer h-full">
           {options ? (
@@ -60,19 +63,20 @@ export default function QuestionCardComp({
               className={`flex flex-col ${small ? "text-xs" : "text-sm"} gap-1`}
             >
               {options.map((elem, index) => (
-                <label
-                  htmlFor={index + elem[10]}
-                  key={index + elem[10]}
-                  className="flex gap-2"
-                >
+                <div className="flex gap-1">
                   <input
                     type={type}
-                    id={index + elem[10]}
+                    id={index + elem}
                     name={type == "radio" ? question : ""}
                     className="cursor-pointer"
                   />
-                  {elem}
-                </label>
+                  <label
+                    htmlFor={index + elem}
+                    key={index + Math.random()}
+                    className="flex gap-2 cursor-pointer text-sm"
+                    dangerouslySetInnerHTML={{ __html: elem }}
+                  ></label>
+                </div>
               ))}
             </div>
           ) : (
@@ -86,7 +90,9 @@ export default function QuestionCardComp({
       </div>
 
       <div
-        className={`w-full ${small? "" :"pb-6"} box-border overflow-hidden p-2 px-3 rounded-xl h-full bg-white absolute top-0 transition-transform duration-1000`}
+        className={`w-full ${
+          small ? "" : "pb-6"
+        } box-border overflow-hidden p-2 px-3 rounded-xl h-full bg-white absolute top-0 transition-transform duration-1000`}
         style={{
           backfaceVisibility: "hidden",
           transform: openSolutionSection
@@ -96,36 +102,45 @@ export default function QuestionCardComp({
             "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
         }}
       >
-      {showSolution ?   <>
-          <div className="text-xs py-2 flex justify-between items-center pr-1">
-            <span>Explanation:</span>
-            <span
-              className="cursor-pointer active:bg-slate-100 p-1 rounded-full"
-              onClick={solutionRevealer}
-            >
-              <TbArrowsExchange size="1.8em" />
-            </span>
+        {showSolution ? (
+          <>
+            <div className="text-xs py-2 flex justify-between items-center pr-1">
+              <span>Explanation:</span>
+              <span
+                className="cursor-pointer active:bg-slate-100 p-1 rounded-full"
+                onClick={solutionRevealer}
+              >
+                <TbArrowsExchange size="1.8em" />
+              </span>
+            </div>
+            <p
+              className="ExplanationBlock text-sm h-[91%] overflow-y-auto"
+              style={{ scrollbarWidth: "thin" }}
+              dangerouslySetInnerHTML={{ __html: explanation }}
+            ></p>
+          </>
+        ) : (
+          <div className="flex flex-col gap-4 justify-center h-full">
+            <p className="text-center">
+              If you view the solution then you will not be able to change your
+              answer/selection.
+            </p>
+            <div className="flex justify-center gap-4">
+              <button
+                className="border-2 border-white shadow-md w-fit px-4 rounded-full"
+                onClick={solutionRevealer}
+              >
+                back
+              </button>
+              <button
+                className="border-2 border-white shadow-md w-fit px-4 rounded-full"
+                onClick={() => setShowSolution(true)}
+              >
+                view
+              </button>
+            </div>
           </div>
-          <p
-            className="ExplanationBlock text-sm h-[91%] overflow-y-auto"
-            style={{ scrollbarWidth: "thin" }}
-          >
-            {explanation}
-          </p>
-        </> : <div className="flex flex-col gap-4 justify-center h-full">
-          <p className="text-center">
-            If you view the solution then you will not be able to change your
-            answer/selection.
-          </p>
-          <div className="flex justify-center gap-4">
-            <button className="border-2 border-white shadow-md w-fit px-4 rounded-full" onClick={solutionRevealer}>
-              back
-            </button>
-            <button className="border-2 border-white shadow-md w-fit px-4 rounded-full" onClick={() => setShowSolution(true)}>
-              view
-            </button>
-          </div>
-        </div> }
+        )}
       </div>
     </div>
   );

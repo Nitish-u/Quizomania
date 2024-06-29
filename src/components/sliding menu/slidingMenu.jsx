@@ -12,8 +12,8 @@ export default function SlidingMenu({ menuClicked }) {
   }
   return (
     <div
-      className={`menuContainer select-none w-fit p-4 rounded-3xl text-center flex flex-col items-center gap-2 customShadowForQuizCard absolute z-10 left-12 top-24 -translate-x-80 bg-white ${
-        menuClicked ? "translate-x-0" : ""
+      className={`menuContainer select-none w-fit p-4 rounded-3xl text-center flex flex-col items-center gap-2 customShadowForQuizCard absolute z-20 left-12 top-24 bg-white  ${
+        menuClicked ? "" : "-translate-x-96"
       } transition-transform duration-500`}
     >
       <div className="profilePic p-4 rounded-full profilePicShadow relative hover:shadow-none transition-shadow duration-700">

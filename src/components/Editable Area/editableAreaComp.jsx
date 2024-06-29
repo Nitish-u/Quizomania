@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
 
-export default function ({ heading, placeHolder, height, maxHeight, onFocusHandler, title }) {
+export default function ({ heading, placeHolder, onFocusHandler, title }) {
   const [editorText, setEditorText] = useState(placeHolder);
   function handleChange(e) {
     setEditorText(e.target.value);
@@ -14,7 +14,7 @@ export default function ({ heading, placeHolder, height, maxHeight, onFocusHandl
         <div
           className="editableDiv w-full max-w-full p-2 overflow-y-auto outline-none"
           contentEditable
-          style={{height:height, maxHeight: maxHeight, minHeight:'2.5rem'}}
+          style={{height: "8rem"}}
           onChange={handleChange}
           onFocusCapture={() => {
             setEditorText("");

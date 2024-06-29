@@ -3,41 +3,30 @@ import EditableComp from "../../components/Editable Area/editableAreaComp";
 import EditorFuncComp from "../../components/Editor functionalities comp/EditorFuncComp";
 import OptionsComp from "../../components/Options Comp/OptionsComp";
 import { FaArrowDownLong } from "react-icons/fa6";
-import { MdOutlineCheckBox, MdOutlineRadioButtonChecked } from "react-icons/md";
-import { ImParagraphJustify } from "react-icons/im";
-import { BsTextParagraph } from "react-icons/bs";
 import { LuClipboardList } from "react-icons/lu";
+import { IoIosArrowForward } from "react-icons/io";
+import { questionTypes } from "./QuizMakersLeftData";
 
 export default function QuizMakersLeft({ questions, setQuestions }) {
   const [alignmentArrowClicked, setAlignmentArrowClicked] = useState(false);
   const [fontArrowClicked, setFontArrowClicked] = useState(false);
-
   const [typeSelectorClicked, setTypeSelectorClicked] = useState(false);
-  const [optionType, setOptionType] = useState("radio");
-
-  const [questionType, setQuestionType] = useState({
-    type: "Choose question type",
-    iconIndex: -1,
+  const [questionTypeIndex, setQuestionType] = useState(
+    questionTypes.length - 1
+  );
+  const [creatorSectionMesurements, setCreatorSectionMesurements] = useState({
+    height: 0,
+    width: 0,
   });
-
-  const questionTypeIconsArray = [
-    <MdOutlineCheckBox />,
-    <MdOutlineRadioButtonChecked />,
-    <BsTextParagraph />,
-    <ImParagraphJustify />,
-  ];
+  const [showCreatorMenu, setShowCreatorMenu] = useState(true);
 
   const optionsHandler = useCallback(() => {
-    setTypeSelectorClicked(!typeSelectorClicked);
+    setTypeSelectorClicked((prevState) => !prevState);
   }, []);
 
   function typeSelector(e) {
-    const questionType = e.currentTarget.innerText;
     const index = Number(e.currentTarget.getAttribute("id"));
-    setQuestionType((prevState) => {
-      return { ...prevState, type: questionType, iconIndex: index };
-    });
-    setOptionType(e.currentTarget.getAttribute("func-type"));
+    setQuestionType(index);
     setTypeSelectorClicked(false);
   }
 
@@ -60,106 +49,130 @@ export default function QuizMakersLeft({ questions, setQuestions }) {
       const optionElements = Array.from(
         document.getElementsByClassName("optionData")
       );
-      if (optionType == "checkbox" || optionType == "radio") {
+      if (
+        questionTypes[questionTypeIndex].funcType == "checkbox" ||
+        questionTypes[questionTypeIndex].funcType == "radio"
+      ) {
         optionElements.forEach((elem) => {
           options.push(elem.innerHTML);
         });
       }
       const questionData = {
-        type: optionType,
+        type: questionTypes[questionTypeIndex].funcType,
         question: editableDivs[0].innerHTML,
         explanation: editableDivs[1].innerHTML,
         options,
       };
       setQuestions((prevState) => [...prevState, questionData]);
     }
-  });
+  }, []);
+
+  useEffect(() => {
+    const mainContainer = document.getElementById("mainContainer");
+    setCreatorSectionMesurements((prevState) => {
+      return {
+        ...prevState,
+        height: mainContainer?.getBoundingClientRect().height,
+        width: mainContainer?.getBoundingClientRect().width,
+      };
+    });
+  }, []);
 
   return (
-    <div className="functionalCompConatiner border-2 border-black rounded-xl rounded-tl-2xl p-4 relative flex flex-col gap-4 h-full max-w-[700px]">
-      <div className="h-fit max-h-full flex flex-col gap-4">
+    <div className="absolute z-10 h-full transition-all duration-500 rounded-[100%]" style={{
+      transform: showCreatorMenu
+        ? ""
+        : `translateX(${-creatorSectionMesurements.width + 45}px)`,
+    }}>
+      <div
+        className={`relative h-full transition-all duration-500 flex items-center gap-1 sm:gap-4 `}
+        id="mainContainer"
+      >
         <div
-          className={`w-full border-2 border-black rounded-3xl p-2 flex items-center justify-center gap-1 bg-[#0b1215] text-[#fbfbfb] cursor-pointer active:bg-slate-950`}
-          onClick={optionsHandler}
+          className="showCloseBtn h-40 bg-white rounded-xl px-2 flex items-center z-10 active:scale-95 hover:bg-gray-200 cursor-pointer opacity-100 order-2 shadow-lg"
+          onClick={() => setShowCreatorMenu(!showCreatorMenu)}
         >
-          {questionTypeIconsArray[questionType.iconIndex]}
-          {questionType.type} <FaArrowDownLong />
-        </div>
-        <div
-          id="questionTypesConatiner"
-          className={`rounded-2xl overflow-hidden shadow-2xl mt-4 absolute w-[95%] bg-white z-50 top-16 ${
-            typeSelectorClicked ? "" : "hidden"
-          }`}
-        >
-          <p
-            id="0"
-            className="flex items-center gap-1 p-2 w-full justify-center hover:bg-slate-200 cursor-pointer"
-            onClick={typeSelector}
-            func-type="checkbox"
-          >
-            <MdOutlineCheckBox /> Multple Correct type
-          </p>
-          <p
-            id="1"
-            className="flex items-center gap-1 p-2 w-full justify-center hover:bg-slate-200 cursor-pointer"
-            onClick={typeSelector}
-            func-type="radio"
-          >
-            <MdOutlineRadioButtonChecked /> Single Correct type
-          </p>
-          <p
-            id="2"
-            className="flex items-center gap-1 p-2 w-full justify-center hover:bg-slate-200 cursor-pointer"
-            onClick={typeSelector}
-            func-type="Short Answer text"
-          >
-            <BsTextParagraph /> Short Answer type
-          </p>
-          <p
-            id="3"
-            className="flex items-center gap-1 p-2 w-full justify-center hover:bg-slate-200 cursor-pointer"
-            onClick={typeSelector}
-            func-type="Long Answer text"
-          >
-            <ImParagraphJustify /> Long Answer type
-          </p>
-        </div>
-        <div className="sticky">
-          <EditorFuncComp
-            fontArrowClicked={fontArrowClicked}
-            setFontArrowClicked={setFontArrowClicked}
-            alignmentArrowClicked={alignmentArrowClicked}
-            setAlignmentArrowClicked={setAlignmentArrowClicked}
+          <IoIosArrowForward
+            className={`transition-all duration-500 ${
+              showCreatorMenu ? "rotate-180" : ""
+            }`}
+            size="1.5rem"
           />
         </div>
-        <EditableComp
-          heading="Question:-"
-          placeHolder="Enter your question here..."
-          height="8rem"
-          maxHeight="fill-container"
-          onFocusHandler={focusAction}
-          title="something that tells about the answer"
-        />
-      </div>
-      <OptionsComp
-        type={optionType}
-        onFocusHandler={focusAction}
-      />
-      <div className="self-end min-w-fit h-fit w-full flex flex-col gap-4">
-        <EditableComp
-          heading="Solution/Explanation:-"
-          placeHolder="Enter your explanation here..."
-          height="8rem"
-          maxHeight="8rem"
-          onFocusHandler={focusAction}
-          title="not necessary but good to have"
-        />
         <div
-          className="w-full border-2 border-black rounded-3xl p-2 bg-slate-800 text-white flex justify-center items-center gap-1 "
-          onClick={addQuestion}
+          className={`functionalCompConatiner order-1 border-2 border-black rounded-xl rounded-tl-2xl p-4 relative flex flex-col gap-4 max-w-[700px] bg-white transition-all duration-500 ${
+            showCreatorMenu ? "" : "opacity-0"
+          } overflow-y-auto`}
+          id="functionalCompConatiner"
+          style={{
+            height:
+              window.innerWidth > 678
+                ? "fit-content"
+                : `${creatorSectionMesurements.height}px`,
+          }}
         >
-          <LuClipboardList />
-          CREATE
+          <div className="h-fit max-h-full flex flex-col gap-4">
+            <div
+              className={`w-full border-2 border-black rounded-3xl p-2 flex items-center justify-center gap-1 bg-black text-white cursor-pointer active:scale-[.99] transition-all duration-200`}
+              onClick={optionsHandler}
+            >
+              {questionTypes[questionTypeIndex].icon}
+              {questionTypes[questionTypeIndex].placeHolder} <FaArrowDownLong />
+            </div>
+            <div
+              id="questionTypesConatiner"
+              className={`rounded-2xl overflow-hidden shadow-2xl mt-4 absolute w-full left-1/2 -translate-x-1/2 bg-white z-50 top-14 ${
+                typeSelectorClicked ? "" : "hidden"
+              }`}
+            >
+              {questionTypes.map((elem, index) => {
+                if (index != questionTypes.length - 1) {
+                  return (
+                    <p
+                      id={index}
+                      className="flex items-center gap-1 p-2 w-full justify-center hover:bg-slate-200 cursor-pointer"
+                      onClick={typeSelector}
+                      key={"selctOption" + index}
+                      func-type={elem.funcType}
+                    >
+                      {elem.icon} {elem.placeHolder}
+                    </p>
+                  );
+                }
+              })}
+            </div>
+            <div className="sticky top-0">
+              <EditorFuncComp
+                fontArrowClicked={fontArrowClicked}
+                setFontArrowClicked={setFontArrowClicked}
+                alignmentArrowClicked={alignmentArrowClicked}
+                setAlignmentArrowClicked={setAlignmentArrowClicked}
+              />
+            </div>
+            <EditableComp
+              heading="Question:-"
+              placeHolder="Enter your question here..."
+              onFocusHandler={focusAction}
+              title="something that tells about the answer"
+            />
+          </div>
+          <OptionsComp
+            type={questionTypes[questionTypeIndex].funcType}
+            onFocusHandler={focusAction}
+          />
+          <EditableComp
+            heading="Solution/Explanation:-"
+            placeHolder="Enter your explanation here..."
+            onFocusHandler={focusAction}
+            title="not necessary but good to have"
+          />
+          <div
+            className="w-full border-2 border-black rounded-3xl p-2 bg-black text-white flex justify-center items-center gap-1  cursor-pointer active:scale-95"
+            onClick={addQuestion}
+          >
+            <LuClipboardList />
+            CREATE
+          </div>
         </div>
       </div>
     </div>

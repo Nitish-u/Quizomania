@@ -11,7 +11,7 @@
 }
 
 ::-webkit-scrollbar{
-    @apply w-2 h-2;
+    @apply w-1 h-2;
 }
 
 ::-webkit-scrollbar-thumb{
@@ -19,7 +19,7 @@
 }
 
 ::-webkit-scrollbar-track{
-    @apply mt-1 px-1 bg-gray-300 rounded-full;
+    @apply my-2 px-1 bg-gray-300 rounded-full;
 }
 
 @layer components{
