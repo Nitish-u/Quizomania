@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
 
-export default function ({ heading, placeHolder, onFocusHandler, title }) {
+export default function EditableComp({ heading, placeHolder, onFocusHandler, title }) {
   const [editorText, setEditorText] = useState(placeHolder);
   function handleChange(e) {
     setEditorText(e.target.value);

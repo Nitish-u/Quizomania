@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import EditableComp from "../../components/Editable Area/editableAreaComp";
 import EditorFuncComp from "../../components/Editor functionalities comp/EditorFuncComp";
 import OptionsComp from "../../components/Options Comp/OptionsComp";
@@ -85,11 +85,12 @@ export default function QuizMakersLeft({ questions, setQuestions }) {
         : `translateX(${-creatorSectionMesurements.width + 45}px)`,
     }}>
       <div
-        className={`relative h-full transition-all duration-500 flex items-center gap-1 sm:gap-4 `}
+        className={`relative h-full transition-all duration-500 flex items-center gap-1 sm:gap-4 pr-1`}
         id="mainContainer"
       >
         <div
-          className="showCloseBtn h-40 bg-white rounded-xl px-2 flex items-center z-10 active:scale-95 hover:bg-gray-200 cursor-pointer opacity-100 order-2 shadow-lg"
+          className={`showCloseBtn h-40 rounded-xl px-2 flex items-center z-10 active:scale-95 cursor-pointer opacity-100 order-2 bg-transparent transition-all duration-200 shadow-[0_0_4px_gray]  active:shadow-none`}
+          style={{backdropFilter: "blur(5px)"}}
           onClick={() => setShowCreatorMenu(!showCreatorMenu)}
         >
           <IoIosArrowForward
