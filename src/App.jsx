@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/home page/homePage";
 import QuizMakerPage from "./pages/Quiz maker page/QuizMakerPage";
 import MainPage from "./pages/Main page/MainPage";
+import PrimaryBtn from "./components/Primary Btn/PrimaryBtn";
+import PageNotFound from "./components/Page Not found/PageNotFound";
 
 function App() {
   const router = createBrowserRouter([
@@ -17,12 +19,7 @@ function App() {
           element: <QuizMakerPage />,
         },
       ],
-      errorElement: (
-        <div className="h-full w-full flex flex-col justify-center items-center">
-          <div className="heading sm:text-9xl font-black text-5xl">404</div>
-          <p>Page not found.</p>
-        </div>
-      ),
+      errorElement: <PageNotFound />,
     },
   ]);
   return <RouterProvider router={router} />;
