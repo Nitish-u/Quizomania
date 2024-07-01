@@ -4,6 +4,7 @@ import { GrScorecard } from "react-icons/gr";
 import { IoIosArrowDown } from "react-icons/io";
 import { LuClipboardList } from "react-icons/lu";
 import { MdOutlineBookmarkBorder, MdOutlineEdit } from "react-icons/md";
+import PrimaryBtn from "../Primary Btn/PrimaryBtn";
 
 export default function SlidingMenu({ menuClicked }) {
   const [edit, setEdit] = useState(false);
@@ -22,31 +23,58 @@ export default function SlidingMenu({ menuClicked }) {
           alt="profile pic"
           className="w-24 cursor-pointer"
         />
-        <div className="text-slate-700 opacity-0 hover:opacity-100 transition-opacity duration-700 cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-slate-200 bg-opacity-90 flex items-center justify-center rounded-full" onClick={showEditOption}>
+        <div
+          className="text-slate-700 opacity-0 hover:opacity-100 transition-opacity duration-700 cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-slate-200 bg-opacity-90 flex items-center justify-center rounded-full"
+          onClick={showEditOption}
+        >
           <MdOutlineEdit size="2rem" />
         </div>
-        <div className={`profileActions bg-white rounded-xl absolute shadow-2xl -bottom-16 -right-28 w-36 overflow-hidden cursor-pointer ${menuClicked ? edit ? "" : "hidden" : "hidden" }`}>
-          <p className="px-6 py-2 hover:bg-slate-200 active:bg-slate-300" onClick={showEditOption}>change pic</p>
-          <p className="px-6 py-2 hover:bg-slate-200 active:bg-slate-300" onClick={showEditOption}>edit profile</p>
+        <div
+          className={`profileActions bg-white rounded-xl absolute shadow-2xl -bottom-16 -right-28 w-36 overflow-hidden cursor-pointer ${
+            menuClicked ? (edit ? "" : "hidden") : "hidden"
+          }`}
+        >
+          <p
+            className="px-6 py-2 hover:bg-slate-200 active:bg-slate-300"
+            onClick={showEditOption}
+          >
+            change pic
+          </p>
+          <p
+            className="px-6 py-2 hover:bg-slate-200 active:bg-slate-300"
+            onClick={showEditOption}
+          >
+            edit profile
+          </p>
         </div>
       </div>
       <div className="username text-3xl">someone</div>
       <div className="streakAndAvgScrore flex w-full justify-between px-4">
-        <div className="streak"><span className="text-xl">🔥</span> 10 days</div>
+        <div className="streak">
+          <span className="text-xl">🔥</span> 10 days
+        </div>
         <div className="avgScore flex gap-2 items-center">
           <GrScorecard />
           80%
         </div>
       </div>
       <div className="totalAttempts">Quizes attempted: 10</div>
-      <button className="border-2 h-12 border-black bg-[var(--black100)] rounded-full p-3 px-14 text-white flex justify-center items-center w-full gap-2">
-        YOUR QUIZES
-        <LuClipboardList size="1.2rem" />
-      </button>
-      <button className="border-2 h-12 border-black bg-[var(--black100)] rounded-full px-14 text-white flex justify-center items-center w-full gap-1">
-        SAVED
-        <MdOutlineBookmarkBorder size="1.5rem" />
-      </button>
+      <PrimaryBtn
+        placeholder={
+          <>
+            YOUR QUIZES
+            <LuClipboardList size="1.2rem" />
+          </>
+        }
+      />
+      <PrimaryBtn
+        placeholder={
+          <>
+            SAVED
+            <MdOutlineBookmarkBorder size="1.5rem" />
+          </>
+        }
+      />
       <div className="attemptHistory w-full flex flex-col gap-2">
         <div className="heading text-left text-sm font-semibold">
           Recently attempted:
