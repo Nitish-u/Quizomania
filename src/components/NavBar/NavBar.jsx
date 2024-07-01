@@ -1,7 +1,7 @@
 import filterIcon from "../../assets/svgs/filter icon.svg";
 import profilePic from "../../assets/svgs/avatar-default_svgrepo.com.svg";
 import { useState } from "react";
-import SlidingMenu from "../../components/sliding menu/slidingMenu";
+import SlidingMenu from "../sliding menu/slidingMenu";
 
 import { GoSearch } from "react-icons/go";
 import { FaPlus } from "react-icons/fa6";
