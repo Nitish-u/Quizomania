@@ -8,6 +8,11 @@ import { IoIosArrowForward } from "react-icons/io";
 import { questionTypes } from "./QuizMakersLeftData";
 
 export default function QuizMakersLeft({ questions, setQuestions }) {
+  const [options, setOptions] = useState(["Option 1"]);
+  const [editorText, setEditorText] = useState({
+    question: "Enter your question here...",
+    explanation: "Enter your explanation here...",
+  });
   const [alignmentArrowClicked, setAlignmentArrowClicked] = useState(false);
   const [fontArrowClicked, setFontArrowClicked] = useState(false);
   const [typeSelectorClicked, setTypeSelectorClicked] = useState(false);
@@ -40,9 +45,7 @@ export default function QuizMakersLeft({ questions, setQuestions }) {
     const editableDivs = document.getElementsByClassName("editableDiv");
     if (
       editableDivs[0].innerText.trim() == "" ||
-      editableDivs[1].innerText.trim() == "" ||
-      editableDivs[0].innerText.trim() == "Enter your question here..." ||
-      editableDivs[1].innerText.trim() == "Enter your explanation here..."
+      editableDivs[0].innerText.trim() == "Enter your question here..."
     ) {
       alert("Please enter complete details to proceed!");
     } else {
@@ -60,10 +63,24 @@ export default function QuizMakersLeft({ questions, setQuestions }) {
       const questionData = {
         type: questionTypes[questionTypeIndex].funcType,
         question: editableDivs[0].innerHTML,
-        explanation: editableDivs[1].innerHTML,
+        explanation:
+          editableDivs[1].innerText == "Enter your explanation here..."
+            ? ""
+            : editableDivs[1].innerHTML,
         options,
+        key: `question: ${questions.length + 1}`,
       };
       setQuestions((prevState) => [...prevState, questionData]);
+      setEditorText((prevState) => {
+        return {
+          ...prevState,
+          question: "Enter your question here...",
+          explanation: "Enter your explanation here...",
+        };
+      });
+      if(questionTypes[questionTypeIndex].funcType == "checkbox" || questionTypes[questionTypeIndex].funcType == "radio"){
+        setOptions(() => ["Option 1"])
+      }
     }
   }, []);
 
@@ -78,19 +95,29 @@ export default function QuizMakersLeft({ questions, setQuestions }) {
     });
   }, []);
 
+  const handleChange = useCallback((event) => {
+    const Identifier = event.target.getAttribute("id");
+    setEditorText((prevState) => {
+      return { ...prevState, [Identifier]: event.target.value };
+    });
+  }, []);
+
   return (
-    <div className="absolute z-10 h-full transition-all duration-500 rounded-[100%]" style={{
-      transform: showCreatorMenu
-        ? ""
-        : `translateX(${-creatorSectionMesurements.width + 45}px)`,
-    }}>
+    <div
+      className="absolute z-10 h-full transition-all duration-500 rounded-[100%]"
+      style={{
+        transform: showCreatorMenu
+          ? ""
+          : `translateX(${-creatorSectionMesurements.width + 45}px)`,
+      }}
+    >
       <div
         className={`relative h-full transition-all duration-500 flex items-center gap-1 sm:gap-4 pr-1`}
         id="mainContainer"
       >
         <div
           className={`showCloseBtn h-40 rounded-xl px-2 flex items-center z-10 active:scale-95 cursor-pointer opacity-100 order-2 bg-transparent transition-all duration-200 shadow-[0_0_4px_gray]  active:shadow-none`}
-          style={{backdropFilter: "blur(5px)"}}
+          style={{ backdropFilter: "blur(5px)" }}
           onClick={() => setShowCreatorMenu(!showCreatorMenu)}
         >
           <IoIosArrowForward
@@ -151,19 +178,27 @@ export default function QuizMakersLeft({ questions, setQuestions }) {
               />
             </div>
             <EditableComp
+              id={"question"}
+              handleChange={handleChange}
+              editorText={editorText.question}
+              setEditorText={setEditorText}
               heading="Question:-"
-              placeHolder="Enter your question here..."
               onFocusHandler={focusAction}
               title="something that tells about the answer"
             />
           </div>
           <OptionsComp
+            options={options}
+            setOptions={setOptions}
             type={questionTypes[questionTypeIndex].funcType}
             onFocusHandler={focusAction}
           />
           <EditableComp
+            id={"explanation"}
+            handleChange={handleChange}
+            editorText={editorText.explanation}
+            setEditorText={setEditorText}
             heading="Solution/Explanation:-"
-            placeHolder="Enter your explanation here..."
             onFocusHandler={focusAction}
             title="not necessary but good to have"
           />

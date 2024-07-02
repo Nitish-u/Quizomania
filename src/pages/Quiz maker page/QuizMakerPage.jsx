@@ -1,5 +1,4 @@
 import { useState } from "react";
-import NavBar from "../../components/NavBar/NavBar";
 import QuizMakersLeft from "../../components/QuizMakersLeft/QuizMakersLeft";
 import QuestionCardComp from "../../components/QuestionCardComp/QuestionCardComp";
 import { FaHandPointLeft } from "react-icons/fa6";
@@ -11,11 +10,12 @@ export default function QuizMakerPage() {
       <QuizMakersLeft questions={questions} setQuestions={setQuestions} />
       <div className="quizCardContainer overflow-y-auto h-full flex-1 w-full">
         {questions.length != 0 ? (
-          <div className="p-4 columns-3xs h-fit w-full">
+          <div className="p-4 columns-3xs h-fit w-full" key={"questionCardContainer"}>
             {questions.map((elem, index) => {
               return (
                 <QuestionCardComp
-                  key={"Question: " + index}
+                  key={elem.key}
+                  editing={true}
                   small={true}
                   explanation={elem.explanation}
                   options={elem.options}

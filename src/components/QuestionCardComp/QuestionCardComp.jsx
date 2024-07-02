@@ -2,6 +2,7 @@ import { useState } from "react";
 import { LuClipboardList } from "react-icons/lu";
 import { MdOutlineInfo } from "react-icons/md";
 import { TbArrowsExchange } from "react-icons/tb";
+import { MdModeEditOutline } from "react-icons/md";
 
 export default function QuestionCardComp({
   small,
@@ -9,6 +10,7 @@ export default function QuestionCardComp({
   question,
   explanation,
   options,
+  editing
 }) {
   const [openSolutionSection, setOpenSolutionSection] = useState(false);
   const [showSolution, setShowSolution] = useState(false);
@@ -34,13 +36,14 @@ export default function QuestionCardComp({
       >
         <div className="header flex items-center justify-between">
           <p className="text-sm">Question:</p>
+          {editing && <div><MdModeEditOutline /></div>}
           <button
             title="View solution"
             onClick={solutionRevealer}
-            className={`border-2 rounded-full ${
+            className={`rounded-full ${
               small
-                ? "hover:border-white"
-                : "text-xs p-1 px-2 hover:border-black"
+                ? "hover:border-none"
+                : "text-xs border-[1px] p-1 px-2 hover:border-black"
             } w-fit bg-black text-white flex items-center gap-1`}
           >
             {small ? "" : "Explanation"}
@@ -63,7 +66,7 @@ export default function QuestionCardComp({
               className={`flex flex-col ${small ? "text-xs" : "text-sm"} gap-1`}
             >
               {options.map((elem, index) => (
-                <div className="flex gap-1">
+                <div className="flex gap-1" key={elem}>
                   <input
                     type={type}
                     id={index + elem}
@@ -116,7 +119,7 @@ export default function QuestionCardComp({
             <p
               className="ExplanationBlock text-sm h-[91%] overflow-y-auto"
               style={{ scrollbarWidth: "thin" }}
-              dangerouslySetInnerHTML={{ __html: explanation }}
+              dangerouslySetInnerHTML={{ __html: explanation == "" ? "No explanation provided!" : explanation }}
             ></p>
           </>
         ) : (

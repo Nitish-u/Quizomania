@@ -2,10 +2,7 @@ import { useEffect, useId, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { IoMdAddCircleOutline } from "react-icons/io";
 
-export default function OptionsComp({ type, onFocusHandler, height }) {
-  const id = useId();
-  const [options, setOptions] = useState(["Option 1"]);
-
+export default function OptionsComp({ options, setOptions, type, onFocusHandler, height }) {
   function optionAdder() {
     const newOption = "Option " + (options.length + 1);
     setOptions((prevState) => {
