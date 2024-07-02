@@ -60,6 +60,7 @@ export default function SlidingMenu({ menuClicked }) {
       </div>
       <div className="totalAttempts">Quizes attempted: 10</div>
       <PrimaryBtn
+      className={"w-full"}
         placeholder={
           <>
             YOUR QUIZES
@@ -68,6 +69,7 @@ export default function SlidingMenu({ menuClicked }) {
         }
       />
       <PrimaryBtn
+      className={"w-full"}
         placeholder={
           <>
             SAVED

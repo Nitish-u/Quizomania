@@ -40,9 +40,3 @@ export default function QuizMakerPage() {
     </div>
   );
 }
-
-// <div className="flex flex-col gap-4 h-full">
-{
-  /* //   <NavBar /> */
-}
-// </div>

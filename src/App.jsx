@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/home page/homePage";
 import QuizMakerPage from "./pages/Quiz maker page/QuizMakerPage";
 import MainPage from "./pages/Main page/MainPage";
-import PrimaryBtn from "./components/Primary Btn/PrimaryBtn";
 import PageNotFound from "./components/Page Not found/PageNotFound";
 
 function App() {
