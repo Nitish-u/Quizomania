@@ -8,7 +8,7 @@ import { MdOutlineBookmarkBorder } from "react-icons/md";
 
 export default function QuizCard() {
   return (
-    <div className="cardContainer w-full h-fit rounded-2xl overflow-hidden customShadowForQuizCard relative break-inside-avoid mb-4">
+    <div className="cardContainer h-fit rounded-2xl overflow-hidden customShadowForQuizCard relative">
       <div className="interations flex absolute gap-4 right-4 top-3">
         <div className="likeBtnContainer flex gap-1 items-center text-white">
           {<FaRegHeart />}
