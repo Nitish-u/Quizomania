@@ -77,7 +77,7 @@
     }
     
     .functionalKeysContainer div {
-        @apply active:bg-slate-100 p-2 rounded-lg cursor-pointer;
+        @apply p-2 rounded-lg cursor-pointer;
     }
 
     .icons {
