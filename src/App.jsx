@@ -19,7 +19,7 @@ function App() {
         },
       ],
       errorElement: <PageNotFound />,
-    },
+    }
   ]);
   return <RouterProvider router={router} />;
 }

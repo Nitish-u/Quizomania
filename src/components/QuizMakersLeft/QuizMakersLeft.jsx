@@ -96,7 +96,9 @@ export default function QuizMakersLeft({ questions, setQuestions }) {
   }, []);
 
   const handleChange = useCallback((event) => {
+    console.log("hi");
     const Identifier = event.target.getAttribute("id");
+    console.log(event.target.innerHTML);
     setEditorText((prevState) => {
       return { ...prevState, [Identifier]: event.target.value };
     });

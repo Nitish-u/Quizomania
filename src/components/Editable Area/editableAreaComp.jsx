@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import { MdInfoOutline } from "react-icons/md";
 
 export default function EditableComp({
@@ -25,6 +24,7 @@ export default function EditableComp({
           contentEditable
           style={{ height: "8rem" }}
           onInput={handleChange}
+          // onChange={handleChange}
           onFocusCapture={() => {
             onFocusHandler();
           }}
