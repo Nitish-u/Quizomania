@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import PrimaryBtn from "../Primary Btn/PrimaryBtn";
 import { useNavigate } from "react-router-dom";
 
-export default function PageNotFound() {
+const PageNotFound = memo(() => {
   const navigate = useNavigate();
   return (
     <div className="h-full w-full flex flex-col justify-center items-center">
@@ -15,4 +15,5 @@ export default function PageNotFound() {
       />
     </div>
   );
-}
+});
+export default PageNotFound;

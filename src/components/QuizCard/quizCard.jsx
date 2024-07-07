@@ -5,8 +5,9 @@ import profilePic from "../../assets/svgs/avatar-default_svgrepo.com.svg";
 import { SlOptionsVertical } from "react-icons/sl";
 import { FaRegHeart } from "react-icons/fa";
 import { MdOutlineBookmarkBorder } from "react-icons/md";
+import { memo } from "react";
 
-export default function QuizCard() {
+const QuizCard = memo(() => {
   return (
     <div className="cardContainer h-fit rounded-2xl overflow-hidden customShadowForQuizCard relative">
       <div className="interations flex absolute gap-4 right-4 top-3">
@@ -46,10 +47,15 @@ export default function QuizCard() {
             <div className="publisherUsername text-md">thecky guy</div>
           </div>
           <div className="options">
-            <SlOptionsVertical className="p-2 rounded-full active:bg-gray-200 cursor-pointer" size="2rem"  />
+            <SlOptionsVertical
+              className="p-2 rounded-full active:bg-gray-200 cursor-pointer"
+              size="2rem"
+            />
           </div>
         </div>
       </div>
     </div>
   );
-}
+});
+
+export default QuizCard;

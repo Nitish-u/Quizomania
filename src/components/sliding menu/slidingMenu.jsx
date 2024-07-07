@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import profilePic from "../../assets/svgs/avatar-default_svgrepo.com.svg";
 import { GrScorecard } from "react-icons/gr";
 import { IoIosArrowDown } from "react-icons/io";
@@ -6,7 +6,7 @@ import { LuClipboardList } from "react-icons/lu";
 import { MdOutlineBookmarkBorder, MdOutlineEdit } from "react-icons/md";
 import PrimaryBtn from "../Primary Btn/PrimaryBtn";
 
-export default function SlidingMenu({ menuClicked }) {
+const SlidingMenu = memo(({ menuClicked }) => {
   const [edit, setEdit] = useState(false);
   function showEditOption() {
     setEdit(!edit);
@@ -113,3 +113,6 @@ export default function SlidingMenu({ menuClicked }) {
     </div>
   );
 }
+)
+
+export default SlidingMenu;
