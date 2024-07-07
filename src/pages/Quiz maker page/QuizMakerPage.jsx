@@ -1,19 +1,36 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import QuizMakersLeft from "../../components/QuizMakersLeft/QuizMakersLeft";
 import QuestionCardComp from "../../components/QuestionCardComp/QuestionCardComp";
 import { FaHandPointLeft } from "react-icons/fa6";
 
 export default function QuizMakerPage() {
   const [questions, setQuestions] = useState([]);
+  const [toBeEdited, setToBeEdited] = useState({});
+  const [showCreatorMenu, setShowCreatorMenu] = useState(true);
+  const editQuestion = useCallback((questionIndex) => {
+    console.log(questions[questionIndex]);
+    setToBeEdited(questions[questionIndex]);
+    setShowCreatorMenu(true);
+    setQuestions((prevState) => {
+      const newQuestions = [...prevState];
+      newQuestions.splice(questionIndex, 1);
+      return newQuestions;
+    });
+  }, [questions]);
   return (
     <div className="hero flex-1 flex flex-wrap gap-4 relative w-full overflow-hidden">
-      <QuizMakersLeft questions={questions} setQuestions={setQuestions} />
+      <QuizMakersLeft showCreatorMenu={showCreatorMenu} setShowCreatorMenu={setShowCreatorMenu} toBeEdited={toBeEdited} questions={questions} setQuestions={setQuestions} />
       <div className="quizCardContainer overflow-y-auto h-full flex-1 w-full">
         {questions.length != 0 ? (
-          <div className="p-4 columns-3xs h-fit w-full" key={"questionCardContainer"}>
+          <div
+            className="p-4 columns-3xs h-fit w-full"
+            key={"questionCardContainer"}
+          >
             {questions.map((elem, index) => {
               return (
                 <QuestionCardComp
+                editHndlr={() => editQuestion(index)}
+                  questionkey={elem.key}
                   key={elem.key}
                   editing={true}
                   small={true}
