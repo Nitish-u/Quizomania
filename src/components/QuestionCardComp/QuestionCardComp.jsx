@@ -3,12 +3,24 @@ import { LuClipboardList } from "react-icons/lu";
 import { MdOutlineInfo } from "react-icons/md";
 import { TbArrowsExchange } from "react-icons/tb";
 import { MdModeEditOutline } from "react-icons/md";
+import { RxCross1, RxCross2 } from "react-icons/rx";
+import { ImBin } from "react-icons/im";
+import { RiDeleteBin2Fill } from "react-icons/ri";
 
 const QuestionCardComp = memo(
-  ({ small, type, question, explanation, options, editing, editHndlr, questionkey }) => {
+  ({
+    small,
+    type,
+    question,
+    explanation,
+    options,
+    editing,
+    editHndlr,
+    questionkey,
+    deleteHndlr
+  }) => {
     const [openSolutionSection, setOpenSolutionSection] = useState(false);
     const [showSolution, setShowSolution] = useState(false);
-
 
     function solutionRevealer() {
       setOpenSolutionSection(!openSolutionSection);
@@ -32,14 +44,6 @@ const QuestionCardComp = memo(
           <div className="header flex items-center justify-between">
             <p className="text-sm">Question:</p>
             <div className="flex items-center gap-2">
-              {editing && (
-                <div onClick={editHndlr}>
-                  <MdModeEditOutline
-                    className="p-1 active:bg-gray-100 rounded-full cursor-pointer"
-                    size="1.5rem"
-                  />
-                </div>
-              )}
               <button
                 title="View solution"
                 onClick={solutionRevealer}
@@ -56,6 +60,22 @@ const QuestionCardComp = memo(
                   <LuClipboardList className="flex-none" size="1rem" />
                 )}
               </button>
+              {editing && (
+                <div className="flex items-center">
+                  <div key={"editQuestion"} onClick={editHndlr}>
+                    <MdModeEditOutline
+                      className="p-1 active:bg-gray-100 rounded-full cursor-pointer"
+                      size="1.7rem"
+                    />
+                  </div>
+                  <div key={"deleteQuestion"} onClick={deleteHndlr}>
+                    <RiDeleteBin2Fill
+                      className="p-1 active:bg-gray-100 rounded-lg cursor-pointer text-red-500"
+                      size="1.75rem"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           <div
@@ -65,14 +85,18 @@ const QuestionCardComp = memo(
             {/* {question} */}
           </div>
           <div className="AnswerContainer h-full">
-            {type.toLowerCase() == "checkbox" || type.toLowerCase() == "radio" ? (
+            {type.toLowerCase() == "checkbox" ||
+            type.toLowerCase() == "radio" ? (
               <div
                 className={`flex flex-col ${
                   small ? "text-xs" : "text-sm"
                 } gap-1`}
               >
                 {options.map((elem, index) => (
-                  <div className="flex gap-1" key={questionkey + "option: " + index}>
+                  <div
+                    className="flex gap-1"
+                    key={questionkey + "option: " + index}
+                  >
                     <input
                       type={type}
                       id={questionkey + "option: " + index}

@@ -20,6 +20,18 @@ const QuizMakerPage = memo(() => {
     },
     [questions]
   );
+
+  const deleteHndlr = useCallback(
+    (questionIndex) => {
+      setQuestions((prevState) => {
+        const newQuestions = [...prevState];
+        newQuestions.splice(questionIndex, 1);
+        return newQuestions;
+      });
+    },
+    [questions]
+  );
+
   return (
     <div className="hero flex-1 flex flex-wrap gap-4 relative w-full overflow-hidden">
       <QuizMakersLeft
@@ -42,6 +54,7 @@ const QuizMakerPage = memo(() => {
                   questionkey={elem.key}
                   key={elem.key}
                   editing={true}
+                  deleteHndlr={() => deleteHndlr(index)}
                   small={true}
                   explanation={elem.explanation}
                   options={elem.options}
