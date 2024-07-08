@@ -38,8 +38,20 @@
         @apply bg-white border-2 border-black text-black transition-all duration-300;
     }
     
+    
     button:hover svg path{
         stroke: black;
+    }
+
+    @media(hover: none){
+        /* this will add a fallback for touch screen devices or devices on which we can't hover */
+        button:hover{
+            @apply bg-black border-2 border-black text-white transition-all duration-300;
+        }
+
+        button:hover svg path{
+            stroke: white;
+        }
     }
     
     button:active{

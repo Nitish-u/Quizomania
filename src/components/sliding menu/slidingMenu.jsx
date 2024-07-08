@@ -11,41 +11,41 @@ const SlidingMenu = memo(({ menuClicked }) => {
   function showEditOption() {
     setEdit(!edit);
   }
+  const editOptions = ["Change pic", "Edit profile", "View Picture"];
   return (
     <div
       className={`menuContainer select-none w-fit p-4 rounded-3xl text-center flex flex-col items-center gap-2 customShadowForQuizCard absolute z-20 left-12 top-24 bg-white  ${
         menuClicked ? "" : "-translate-x-96"
       } transition-transform duration-500`}
     >
-      <div className="profilePic p-4 rounded-full profilePicShadow relative hover:shadow-none transition-shadow duration-700">
+      <div
+        className="profilePic p-4 rounded-full profilePicShadow relative transition-shadow duration-700"
+        onClick={showEditOption}
+      >
         <img
           src={profilePic}
           alt="profile pic"
           className="w-24 cursor-pointer"
         />
-        <div
-          className="text-slate-700 opacity-0 hover:opacity-100 transition-opacity duration-700 cursor-pointer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-slate-200 bg-opacity-90 flex items-center justify-center rounded-full"
-          onClick={showEditOption}
-        >
-          <MdOutlineEdit size="2rem" />
+        <div className="text-white transition-opacity duration-700 cursor-pointer absolute bg-black bg-opacity-90 flex items-center justify-center rounded-full bottom-0 right-0 p-2">
+          <MdOutlineEdit size="1rem" />
         </div>
         <div
           className={`profileActions bg-white rounded-xl absolute shadow-2xl -bottom-16 -right-28 w-36 overflow-hidden cursor-pointer ${
             menuClicked ? (edit ? "" : "hidden") : "hidden"
           }`}
         >
-          <p
-            className="px-6 py-2 hover:bg-slate-200 active:bg-slate-300"
-            onClick={showEditOption}
-          >
-            change pic
-          </p>
-          <p
-            className="px-6 py-2 hover:bg-slate-200 active:bg-slate-300"
-            onClick={showEditOption}
-          >
-            edit profile
-          </p>
+          {editOptions.map(elem => {
+            return (
+              <div
+              key={elem}
+                className="px-6 py-2 hover:bg-slate-200 active:bg-slate-300"
+                onClick={showEditOption}
+              >
+                {elem}
+              </div>
+            );
+          })}
         </div>
       </div>
       <div className="username text-3xl">someone</div>
@@ -60,7 +60,7 @@ const SlidingMenu = memo(({ menuClicked }) => {
       </div>
       <div className="totalAttempts">Quizes attempted: 10</div>
       <PrimaryBtn
-      className={"w-full"}
+        className={"w-full"}
         placeholder={
           <>
             YOUR QUIZES
@@ -69,7 +69,7 @@ const SlidingMenu = memo(({ menuClicked }) => {
         }
       />
       <PrimaryBtn
-      className={"w-full"}
+        className={"w-full"}
         placeholder={
           <>
             SAVED
@@ -112,7 +112,6 @@ const SlidingMenu = memo(({ menuClicked }) => {
       </div>
     </div>
   );
-}
-)
+});
 
 export default SlidingMenu;
