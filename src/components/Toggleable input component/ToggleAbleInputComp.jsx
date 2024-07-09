@@ -3,7 +3,7 @@ import { GoCheck } from "react-icons/go";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 
-const InputComp = memo(({ value, type }) => {
+const ToggleAbleInputComp = memo(({ value, type }) => {
   const ref = useRef(null);
   const [oldValue, setOldValue] = useState(value);
   const [editable, setEditable] = useState(false);
@@ -78,4 +78,4 @@ const InputComp = memo(({ value, type }) => {
   );
 });
 
-export default InputComp;
+export default ToggleAbleInputComp;

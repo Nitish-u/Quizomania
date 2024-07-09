@@ -1,5 +1,5 @@
 import React from "react";
-import InputComp from "../Input component/InputComp";
+import ToggleAbleInputComp from "../Toggleable input component/ToggleAbleInputComp";
 import CustomTextArea from "../Custom textarea/CustomTextArea";
 import InterestsComp from "../Interests Comp/InterestsComp";
 
@@ -24,9 +24,9 @@ export default function ProfileSettings({
         <div className="text-black cursor-pointer">View pic</div>
         <div className="text-black cursor-pointer">Change pic</div>
         <div className="p-1 flex flex-col gap-4 w-full">
-          <InputComp value={fullName || "Full name"} type={"text"} />
-          <InputComp value={userName || "User Name"} type={"text"} />
-          <InputComp value={userEmail || "Email"} type={"email"} />
+          <ToggleAbleInputComp value={fullName || "Full name"} type={"text"} />
+          <ToggleAbleInputComp value={userName || "User Name"} type={"text"} />
+          <ToggleAbleInputComp value={userEmail || "Email"} type={"email"} />
         </div>
       </div>
       <div className="right flex flex-col flex-1 gap-4">
