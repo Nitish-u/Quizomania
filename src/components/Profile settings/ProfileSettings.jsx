@@ -1,14 +1,14 @@
 import React from "react";
 import InputComp from "../Input component/InputComp";
 import CustomTextArea from "../Custom textarea/CustomTextArea";
-import SkillsComp from "../Interests Comp/InterestsComp";
+import InterestsComp from "../Interests Comp/InterestsComp";
 
 export default function ProfileSettings({
   fullName,
   userName,
   userEmail,
   description,
-  usersInterest,
+  usersInterests,
   profilePicUrl,
 }) {
   return (
@@ -31,7 +31,7 @@ export default function ProfileSettings({
       </div>
       <div className="right flex flex-col flex-1 gap-4">
         <CustomTextArea userDescription={description} />
-        <SkillsComp  />
+        <InterestsComp userInterests={usersInterests} />
       </div>
     </div>
   );

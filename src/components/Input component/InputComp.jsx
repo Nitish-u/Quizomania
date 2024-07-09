@@ -40,7 +40,7 @@ const InputComp = memo(({ value, type }) => {
   }, [value]);
 
   return (
-    <div className="flex items-center gap-4 py-0 justify-between sm:p-2 w-full">
+    <div className="flex items-center gap-4 justify-between w-full">
       <input
         type={type}
         ref={ref}
