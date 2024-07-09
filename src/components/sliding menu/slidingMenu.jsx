@@ -1,17 +1,28 @@
-import { memo, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import profilePic from "../../assets/svgs/avatar-default_svgrepo.com.svg";
 import { GrScorecard } from "react-icons/gr";
 import { IoIosArrowDown } from "react-icons/io";
 import { LuClipboardList } from "react-icons/lu";
 import { MdOutlineBookmarkBorder, MdOutlineEdit } from "react-icons/md";
 import PrimaryBtn from "../Primary Btn/PrimaryBtn";
+import { useNavigate } from "react-router-dom";
 
-const SlidingMenu = memo(({ menuClicked }) => {
+const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
+  const navigate = useNavigate();
   const [edit, setEdit] = useState(false);
   function showEditOption() {
     setEdit(!edit);
   }
-  const editOptions = ["Change pic", "Edit profile", "View Picture"];
+  const editOptions = [{option: "Change pic", function: "changePic"}, {option: "Edit profile", function: "editProfile" }, {option: "View Picture", function: "viewProfile"}, {option: "Close", function: "close"}];
+  const handleEditOptionClick = useCallback((option) => {
+    switch(option){
+      case "editProfile":
+        navigate("/editProfile");
+        setMenuClicked(false);
+        break;
+    }
+    setEdit(false);
+  }, [])
   return (
     <div
       className={`menuContainer select-none w-fit p-4 rounded-3xl text-center flex flex-col items-center gap-2 customShadowForQuizCard absolute z-20 left-12 top-24 bg-white  ${
@@ -31,18 +42,18 @@ const SlidingMenu = memo(({ menuClicked }) => {
           <MdOutlineEdit size="1rem" />
         </div>
         <div
-          className={`profileActions bg-white rounded-xl absolute shadow-2xl -bottom-16 -right-28 w-36 overflow-hidden cursor-pointer ${
+          className={`profileActions bg-white rounded-xl absolute shadow-2xl left-1/2 -translate-x-1/2 top-36 w-36 overflow-hidden cursor-pointer ${
             menuClicked ? (edit ? "" : "hidden") : "hidden"
           }`}
         >
           {editOptions.map(elem => {
             return (
               <div
-              key={elem}
+              key={elem.function}
                 className="px-6 py-2 hover:bg-slate-200 active:bg-slate-300"
-                onClick={showEditOption}
+                onClick={() => handleEditOptionClick(elem.function)}
               >
-                {elem}
+                {elem.option}
               </div>
             );
           })}

@@ -33,7 +33,7 @@ const NavBar = memo(() => {
 
   return (
     <>
-      <SlidingMenu menuClicked={menuClicked} />
+      <SlidingMenu menuClicked={menuClicked} setMenuClicked={setMenuClicked} />
       <nav
         className={`bg-[var(--offWhite)] p-2 border-2 border-[var(--black100)] px-4 rounded-2xl flex justify-between items-center`}
       >

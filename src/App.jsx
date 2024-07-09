@@ -3,6 +3,7 @@ import HomePage from "./pages/home page/homePage";
 import QuizMakerPage from "./pages/Quiz maker page/QuizMakerPage";
 import MainPage from "./pages/Main page/MainPage";
 import PageNotFound from "./components/Page Not found/PageNotFound";
+import EditProfile from "./pages/Edit Profile/EditProfile";
 
 function App() {
   const router = createBrowserRouter([
@@ -17,6 +18,10 @@ function App() {
           path: "create",
           element: <QuizMakerPage />,
         },
+        {
+          path: "editProfile",
+          element: <EditProfile />
+        }
       ],
       errorElement: <PageNotFound />,
     }
