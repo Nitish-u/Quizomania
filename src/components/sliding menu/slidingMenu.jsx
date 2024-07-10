@@ -5,9 +5,10 @@ import { IoIosArrowDown } from "react-icons/io";
 import { LuClipboardList } from "react-icons/lu";
 import { MdOutlineBookmarkBorder, MdOutlineEdit } from "react-icons/md";
 import PrimaryBtn from "../Primary Btn/PrimaryBtn";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
+  const { pathname } = useLocation();
   const navigate = useNavigate();
   const [edit, setEdit] = useState(false);
   function showEditOption() {
@@ -23,9 +24,15 @@ const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
     }
     setEdit(false);
   }, [])
+  const redirect = useCallback((e) => {
+    const route = e.currentTarget.id;
+    navigate(route);
+    setMenuClicked(false);
+  }, []);
+
   return (
     <div
-      className={`menuContainer select-none w-fit p-4 rounded-3xl text-center flex flex-col items-center gap-2 customShadowForQuizCard absolute z-20 left-12 top-24 bg-white  ${
+      className={`menuContainer select-none w-fit min-w-72 p-4 rounded-3xl text-center flex flex-col items-center gap-2 customShadowForQuizCard absolute z-20 left-12 top-24 bg-white  ${
         menuClicked ? "" : "-translate-x-96"
       } transition-transform duration-500`}
     >
@@ -70,8 +77,20 @@ const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
         </div>
       </div>
       <div className="totalAttempts">Quizes attempted: 10</div>
+      {pathname !== "/create" && <PrimaryBtn
+        className={"w-full p-3"}
+        id={"/create"}
+        onClick={redirect}
+        placeholder={
+          <>
+            CREATE
+            <LuClipboardList size="1.2rem" />
+          </>
+        }
+      />}
       <PrimaryBtn
-        className={"w-full"}
+        className={"w-full p-3 bg-white"}
+        styles={{color: "black"}}
         placeholder={
           <>
             YOUR QUIZES
@@ -80,7 +99,8 @@ const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
         }
       />
       <PrimaryBtn
-        className={"w-full"}
+        className={"w-full p-3 bg-white"}
+        styles={{color: "black"}}
         placeholder={
           <>
             SAVED
