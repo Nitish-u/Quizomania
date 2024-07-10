@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 
-const InterestsComp = memo(({ userInterests }) => {
+const InterestsComp = memo(({ userInterests, placeholder }) => {
   const [searchText, setSearchText] = useState("");
   const [resuts, setResults] = useState([]);
   const [interests, setInterests] = useState([]);
@@ -174,13 +174,13 @@ const InterestsComp = memo(({ userInterests }) => {
     }
   }, []);
   return (
-    <div className="flex flex-col gap-4 flex-1 min-w-72">
+    <div className="flex flex-col gap-4 flex-1 sm:min-w-72 -w-full">
       <div key={"searchContainer"} className="relative w-fit overflow-visible">
         <input
           type="text"
           value={searchText}
           onChange={searchHandle}
-          placeholder="Search interests and hobbies"
+          placeholder={`Search ${placeholder || "interests or hobbies"}`}
           className="border-2 border-b-black border-transparent focus:border-black p-2 px-4  w-full transition-all duration-300 outline-none rounded-none focus:rounded-xl"
         />
         {searchText.trim() !== "" && (
@@ -211,16 +211,16 @@ const InterestsComp = memo(({ userInterests }) => {
           interests.map((elem) => {
             return (
               <div
-                className="flex items-center gap-2 rounded-full p-1 px-2 bg-gray-200 h-fit"
+                className="flex items-center px-2 gap-2 rounded-full bg-gray-200 h-fit"
                 key={elem}
               >
-                <p>{elem}</p>
-                <RxCross2 className="cursor-pointer" onClick={deleteInterest} />
+                <p className="p-1">{elem}</p>
+                <RxCross2 size="2rem" className="cursor-pointer p-2" onClick={deleteInterest} />
               </div>
             );
           })
         ) : (
-          <div>No interests or hobbies added yet!</div>
+          <div>No {placeholder || "interests or hobbies"} added yet!</div>
         )}
       </div>
     </div>

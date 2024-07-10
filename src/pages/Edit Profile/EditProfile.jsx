@@ -23,7 +23,7 @@ const EditProfile = memo(() => {
           </h1>
         </div> */}
       </div>
-        <button className="bg-red-500 hover:bg-red-500 border-none text-white p-4 rounded-full min-[400px]:w-60 w-full h-fit active:scale-90 transition-transform duration-500 font-black hover:text-white">Delete Account</button>
+        <button className="bg-red-500 hover:bg-red-500 border-none text-white p-4 rounded-xl min-[400px]:w-60 w-full h-fit active:scale-90 transition-transform duration-500 font-black hover:text-white max-[500px]:mx-auto block">Delete Account</button>
     </div>
   );
 });
