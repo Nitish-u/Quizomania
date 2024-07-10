@@ -32,7 +32,7 @@ export default function FilterComp() {
           showFilterOptions ? "block" : "hidden"
         }`}
       >
-        <FilterOptions />
+        <FilterOptions toggleFilter={toggleFilter} />
       </div>
     </div>
   );
