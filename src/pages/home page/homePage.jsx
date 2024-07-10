@@ -220,7 +220,7 @@ const HomePage = memo(() => {
     []
   );
   return (
-    <div className="quizesContainer flex-1 p-4 border-2 border-black rounded-md rounded-tl-2xl rounded-tr-2xl overflow-y-auto">
+    <div className="quizesContainer flex-1 p-4 border-2 border-black rounded-md rounded-tl-2xl rounded-tr-2xl overflow-y-auto relative">
       <SearchAndFilter />
       <ThoughtComp />
       <div

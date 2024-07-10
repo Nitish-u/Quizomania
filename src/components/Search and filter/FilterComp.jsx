@@ -12,17 +12,17 @@ export default function FilterComp() {
         className="flex flex-col justify-evenly cursor-pointer aspect-square h-12 rounded-xl active:bg-gray-200 transition-all duration-500"
         onClick={toggleFilter}
       >
-        <div className="border-2 border-black h-fit w-8 rounded-full relative mx-auto">
+        <div className="border-2 border-black h-fit w-9 rounded-full relative mx-auto">
           <div
             className={`aspect-square border-2 border-black w-3 absolute top-1/2 -translate-y-1/2 bg-white rounded-[4px] ${
-              showFilterOptions ? "left-[15px]" : "left-[2px]"
+              showFilterOptions ? "left-[17px]" : "left-[4px]"
             } transition-all duration-500`}
           ></div>
         </div>
-        <div className="border-2 border-black h-fit w-8 rounded-full relative mx-auto">
+        <div className="border-2 border-black h-fit w-9 rounded-full relative mx-auto">
           <div
             className={`aspect-square border-2 border-black w-3 absolute top-1/2 -translate-y-1/2 bg-white rounded-[4px] ${
-              showFilterOptions ? "left-[2px]" : "left-[15px]"
+              showFilterOptions ? "left-[4px]" : "left-[17px]"
             } transition-all duration-500`}
           ></div>
         </div>
