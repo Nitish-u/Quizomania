@@ -1,25 +1,44 @@
-import React from "react";
-import PrimaryBtn from "../Primary Btn/PrimaryBtn"
+import React, { memo, useMemo } from "react";
+import PrimaryBtn from "../Primary Btn/PrimaryBtn";
+import CustomInput from "./CustomInput";
 
-export default function SecuritySettings() {
+const SecuritySettings = memo(() => {
+  const inputs = useMemo(
+    () => [
+      {
+        type: "password",
+        willBePassword: true,
+        placeholder: "Old password",
+      },
+      {
+        type: "password",
+        willBePassword: true,
+        placeholder: "New password",
+      },
+      {
+        type: "text",
+        willBePassword: false,
+        placeholder: "Confirm new password",
+      },
+    ],
+    []
+  );
   return (
     <div className="flex gap-4 flex-wrap py-4 w-fit max-w-full items-center">
-      <input
-        type="text"
-        placeholder="Old password"
-        className="shadow-[inset_0_0_4px_gray] p-4 rounded-xl max-w-full w-96"
+      {inputs.map((elem) => (
+        <CustomInput
+          key={elem.placeholder}
+          placeholder={elem.placeholder}
+          willBePassword={elem.willBePassword}
+          type={elem.type}
+        />
+      ))}
+      <PrimaryBtn
+        className="py-3.5 w-fit max-w-full mx-auto rounded-xl h-full"
+        placeholder="Change Password"
       />
-      <input
-        type="text"
-        placeholder="New password"
-        className="shadow-[inset_0_0_4px_gray] p-4 rounded-xl max-w-full w-96"
-      />
-      <input
-        type="text"
-        placeholder="Confirm new password"
-        className="shadow-[inset_0_0_4px_gray] p-4 rounded-xl max-w-full w-96"
-      />
-      <PrimaryBtn className="py-2 w-fit max-w-full mx-auto" onClick="" placeholder="Change Password"/>
     </div>
   );
-}
+});
+
+export default SecuritySettings;

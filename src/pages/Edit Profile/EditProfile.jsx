@@ -1,7 +1,4 @@
 import React, { memo } from "react";
-import InputComp from "../../components/Toggleable input component/ToggleAbleInputComp";
-import CustomTextArea from "../../components/Custom textarea/CustomTextArea";
-import SkillsComp from "../../components/Interests Comp/InterestsComp";
 import ProfileSettings from "../../components/Profile settings/ProfileSettings";
 import SecuritySettings from "../../components/Security Settings/SecuritySettings";
 
@@ -20,12 +17,13 @@ const EditProfile = memo(() => {
           <h2 className="font-bold text-xl w-fit">Change password:</h2>
           <SecuritySettings />
         </div>
-        <div className="notificationSettings max-w-full">
+        {/* <div className="notificationSettings max-w-full">
           <h1 className="sm:text-5xl text-3xl font-bold sm:leading-[72px] my-4 select-none">
             Notification Settings:
           </h1>
-        </div>
+        </div> */}
       </div>
+        <button className="bg-red-500 hover:bg-red-500 border-none text-white p-4 rounded-full min-[400px]:w-60 w-full h-fit active:scale-90 transition-transform duration-500 font-black hover:text-white">Delete Account</button>
     </div>
   );
 });
