@@ -34,8 +34,8 @@ export default function FilterComp() {
         </div>
       </div>
       <div
-        className={`absolute z-10 right-0 top-full max-w-[100vw]  ${
-          showFilterOptions ? "block" : "hidden"
+        className={`absolute z-10 right-0 top-16 max-w-[100vw] transition-all duration-500 ${
+          showFilterOptions ? "" : "translate-x-96 scale-0"
         }`}
       >
         <FilterOptions interests={interests} setInterests={setInterests} toggleFilter={toggleFilter} />

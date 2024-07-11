@@ -14,16 +14,28 @@ const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
   function showEditOption() {
     setEdit(!edit);
   }
-  const editOptions = [{option: "Change pic", function: "changePic"}, {option: "Edit profile", function: "editProfile" }, {option: "View Picture", function: "viewProfile"}, {option: "Close", function: "close"}];
+
+  const recentAttempts = [
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae accusantium dignissimos facilis corrupti hic repellendus debitis, praesentium at numquam aperiam voluptatem recusandae quo nobis animi ut corporis quis minima!",
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae accusantium dignissimos facilis corrupti hic repellendus debitis, praesentium at numquam aperiam voluptatem recusandae quo nobis animi ut corporis quis minima!",
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae accusantium dignissimos facilis corrupti hic repellendus debitis, praesentium at numquam aperiam voluptatem recusandae quo nobis animi ut corporis quis minima!",
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate vitae accusantium dignissimos facilis corrupti hic repellendus debitis, praesentium at numquam aperiam voluptatem recusandae quo nobis animi ut corporis quis minima!",
+  ];
+  const editOptions = [
+    { option: "Change pic", function: "changePic" },
+    { option: "Edit profile", function: "editProfile" },
+    { option: "View Picture", function: "viewProfile" },
+    { option: "Close", function: "close" },
+  ];
   const handleEditOptionClick = useCallback((option) => {
-    switch(option){
+    switch (option) {
       case "editProfile":
         navigate("/editProfile");
         setMenuClicked(false);
         break;
     }
     setEdit(false);
-  }, [])
+  }, []);
   const redirect = useCallback((e) => {
     const route = e.currentTarget.id;
     navigate(route);
@@ -32,9 +44,11 @@ const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
 
   return (
     <div
-      className={`menuContainer select-none w-fit min-w-72 p-4 rounded-3xl text-center flex flex-col items-center gap-2 customShadowForQuizCard absolute z-20 left-12 top-24 bg-white  ${
-        menuClicked ? "" : "-translate-x-96"
-      } transition-transform duration-500`}
+      className={`menuContainer text-xs sm:text-[1em] select-none w-fit max-w-72 p-4 rounded-3xl text-center flex flex-col items-center sm:gap-2 gap-1 customShadowForQuizCard absolute z-20 left-12 top-20 bg-white  ${
+        menuClicked
+          ? ""
+          : "-translate-x-[120%] rounded-r-[100%] overflow-x-hidden"
+      } transition-all duration-1000`}
     >
       <div
         className="profilePic p-4 rounded-full profilePicShadow relative transition-shadow duration-700"
@@ -53,10 +67,10 @@ const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
             menuClicked ? (edit ? "" : "hidden") : "hidden"
           }`}
         >
-          {editOptions.map(elem => {
+          {editOptions.map((elem) => {
             return (
               <div
-              key={elem.function}
+                key={elem.function}
                 className="px-6 py-2 hover:bg-slate-200 active:bg-slate-300"
                 onClick={() => handleEditOptionClick(elem.function)}
               >
@@ -77,20 +91,22 @@ const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
         </div>
       </div>
       <div className="totalAttempts">Quizes attempted: 10</div>
-      {pathname !== "/create" && <PrimaryBtn
-        className={"w-full p-3"}
-        id={"/create"}
-        onClick={redirect}
-        placeholder={
-          <>
-            CREATE
-            <LuClipboardList size="1.2rem" />
-          </>
-        }
-      />}
+      {pathname !== "/create" && (
+        <PrimaryBtn
+          className={"w-full p-3"}
+          id={"/create"}
+          onClick={redirect}
+          placeholder={
+            <>
+              CREATE
+              <LuClipboardList size="1.2rem" />
+            </>
+          }
+        />
+      )}
       <PrimaryBtn
-        className={"w-full p-3 bg-white"}
-        styles={{color: "black"}}
+        className={"w-full p-3 bg-white hover:bg-white"}
+        styles={{ color: "black" }}
         placeholder={
           <>
             YOUR QUIZES
@@ -99,8 +115,8 @@ const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
         }
       />
       <PrimaryBtn
-        className={"w-full p-3 bg-white"}
-        styles={{color: "black"}}
+        className={"w-full p-3 bg-white hover:bg-white"}
+        styles={{ color: "black" }}
         placeholder={
           <>
             SAVED
@@ -113,22 +129,14 @@ const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
           Recently attempted:
         </div>
         <hr />
-        <div className="attemptListFromHistory text-left">
-          <p className="cursor-pointer hover:bg-[var(--black25)] transition-colors duration-200 px-2 rounded-md">
-            Lorem ipsum dolor sit amet....
-          </p>
-          <p className="cursor-pointer hover:bg-[var(--black25)] transition-colors duration-200 px-2 rounded-md">
-            Lorem ipsum dolor sit amet....
-          </p>
-          <p className="cursor-pointer hover:bg-[var(--black25)] transition-colors duration-200 px-2 rounded-md">
-            Lorem ipsum dolor sit amet....
-          </p>
-          <p className="cursor-pointer hover:bg-[var(--black25)] transition-colors duration-200 px-2 rounded-md">
-            Lorem ipsum dolor sit amet....
-          </p>
-          <p className="cursor-pointer hover:bg-[var(--black25)] transition-colors duration-200 px-2 rounded-md">
-            Lorem ipsum dolor sit amet....
-          </p>
+        <div className="attemptListFromHistory text-left sm:gap-1 sm:text-sm font-sans">
+          {recentAttempts.map((elem, index) => {
+            return (
+              <p className="cursor-pointer hover:bg-gray-200 transition-colors duration-200 pl-2 rounded-md line-clamp-1 w-full" key={index}>
+                {elem}
+              </p>
+            );
+          })}
           <p className="hover:underline text-blue-700 cursor-pointer px-2 w-fit">
             see more...
           </p>

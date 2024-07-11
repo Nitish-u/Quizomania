@@ -13,7 +13,9 @@ export default function ProfileSettings({
 }) {
   const [interests, setInterests] = useState([]);
   useEffect(() => {
-    setInterests((prevState) => [...prevState, ...usersInterests]);
+    if (Array.isArray(usersInterests)) {
+      setInterests((prevState) => [...prevState, ...usersInterests]);
+    }
   }, []);
   return (
     <div className="EditProfile flex flex-wrap w-full justify-evenly md:gap-20 gap-10 py-4">

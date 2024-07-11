@@ -50,7 +50,7 @@
         }
 
         button:hover svg path{
-            stroke: white;
+            stroke: inver-[-1];
         }
     }
     

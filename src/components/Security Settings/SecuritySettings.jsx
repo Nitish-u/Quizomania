@@ -34,7 +34,7 @@ const SecuritySettings = memo(() => {
         />
       ))}
       <PrimaryBtn
-        className="py-3.5 w-fit max-w-full mx-auto rounded-xl h-full"
+        className="py-3.5 w-fit max-w-full mx-auto rounded-xl h-full px-4"
         placeholder="Change Password"
       />
     </div>

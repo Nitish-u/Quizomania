@@ -49,7 +49,7 @@ const NavBar = memo(() => {
             )}
           </div>
           <div
-            className="logo sm:text-4xl text-3xl font-light sm:font-extralight leading-none cursor-pointer"
+            className="logo sm:text-4xl text-3xl font-light sm:font-extralight leading-none cursor-pointer select-none"
             id="/" //redirect to home page
             onClick={redirect}
           >

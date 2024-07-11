@@ -11,7 +11,7 @@ const PageNotFound = memo(() => {
       <PrimaryBtn
         placeholder={"Go to Home page"}
         onClick={() => navigate("/")}
-        className={"w-fit mt-4"}
+        className={"w-fit mt-4 p-3 px-6"}
       />
     </div>
   );
