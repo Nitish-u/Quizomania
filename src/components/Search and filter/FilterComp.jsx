@@ -3,7 +3,13 @@ import FilterOptions from "./FilterOptions";
 
 export default function FilterComp() {
   const [showFilterOptions, setShowfilterOptions] = useState(false);
-  const toggleFilter = useCallback(() => {
+  const [interests, setInterests] = useState([]);
+  const toggleFilter = useCallback((e) => {
+    const id = e.currentTarget.id;
+    if(id == "clear all"){
+      setInterests(prevState => []);
+      console.log("changed state");
+    }
     setShowfilterOptions((prevState) => !prevState);
   }, []);
   return (
@@ -32,7 +38,7 @@ export default function FilterComp() {
           showFilterOptions ? "block" : "hidden"
         }`}
       >
-        <FilterOptions toggleFilter={toggleFilter} />
+        <FilterOptions interests={interests} setInterests={setInterests} toggleFilter={toggleFilter} />
       </div>
     </div>
   );

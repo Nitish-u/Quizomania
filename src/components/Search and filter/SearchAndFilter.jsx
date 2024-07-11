@@ -10,7 +10,7 @@ export default function SearchAndFilter() {
         className="outline-none border-2 border-black p-3 rounded-tl-xl rounded-full w-full"
       />
       <div className="flex-1 shrink-0 max-w-fit self-stretch">
-        <FilterComp />
+        <FilterComp  />
       </div>
     </div>
   );

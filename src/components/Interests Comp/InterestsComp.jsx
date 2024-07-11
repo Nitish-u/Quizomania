@@ -1,10 +1,9 @@
-import React, { memo, useCallback, useEffect, useMemo, useState } from "react";
+import React, { memo, useCallback, useMemo, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 
-const InterestsComp = memo(({ userInterests, placeholder }) => {
+const InterestsComp = memo(({ interests, setInterests, placeholder }) => {
   const [searchText, setSearchText] = useState("");
   const [resuts, setResults] = useState([]);
-  const [interests, setInterests] = useState([]);
   const techInterests = useMemo(
     () => [
       "Web Development",
@@ -168,11 +167,6 @@ const InterestsComp = memo(({ userInterests, placeholder }) => {
     });
   }, []);
 
-  useEffect(() => {
-    if (Array.isArray(userInterests)) {
-      setInterests((prevState) => [...prevState, ...userInterests]);
-    }
-  }, []);
   return (
     <div className="flex flex-col gap-4 flex-1 sm:min-w-72 -w-full">
       <div key={"searchContainer"} className="relative w-fit overflow-visible">

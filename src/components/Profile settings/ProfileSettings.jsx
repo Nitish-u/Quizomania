@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ToggleAbleInputComp from "../Toggleable input component/ToggleAbleInputComp";
 import CustomTextArea from "../Custom textarea/CustomTextArea";
 import InterestsComp from "../Interests Comp/InterestsComp";
@@ -11,6 +11,10 @@ export default function ProfileSettings({
   usersInterests,
   profilePicUrl,
 }) {
+  const [interests, setInterests] = useState([]);
+  useEffect(() => {
+    setInterests((prevState) => [...prevState, ...usersInterests]);
+  }, []);
   return (
     <div className="EditProfile flex flex-wrap w-full justify-evenly md:gap-20 gap-10 py-4">
       <div className="left flex flex-col items-center gap-4 flex-1 sm:max-w-[450px] w-full">
@@ -31,7 +35,7 @@ export default function ProfileSettings({
       </div>
       <div className="right flex flex-col flex-1 gap-4">
         <CustomTextArea userDescription={description} />
-        <InterestsComp userInterests={usersInterests} />
+        <InterestsComp interests={interests} setInterests={setInterests} />
       </div>
     </div>
   );
