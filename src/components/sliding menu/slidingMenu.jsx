@@ -44,7 +44,7 @@ const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
 
   return (
     <div
-      className={`menuContainer text-xs sm:text-[1em] select-none w-fit max-w-72 p-4 rounded-3xl text-center flex flex-col items-center sm:gap-2 gap-1 customShadowForQuizCard absolute z-20 left-12 top-20 bg-white  ${
+      className={`menuContainer text-xs sm:text-[1em] select-none w-fit max-w-72 p-4 rounded-3xl text-center flex flex-col items-center sm:gap-2 gap-1 customShadowForQuizCard absolute z-20 left-12 top-24 bg-white  ${
         menuClicked
           ? ""
           : "-translate-x-[120%] rounded-r-[100%] overflow-x-hidden"
@@ -93,7 +93,7 @@ const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
       <div className="totalAttempts">Quizes attempted: 10</div>
       {pathname !== "/create" && (
         <PrimaryBtn
-          className={"w-full p-3"}
+          className={"w-full p-3 max-[420px]:flex hidden"}
           id={"/create"}
           onClick={redirect}
           placeholder={
