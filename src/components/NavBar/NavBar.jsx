@@ -33,10 +33,18 @@ const NavBar = memo(() => {
 
   return (
     <>
-      <SlidingMenu menuClicked={menuClicked} setMenuClicked={setMenuClicked} />
       <nav
-        className={`bg-white p-2 border-2 border-black px-4 rounded-2xl flex justify-between items-center`}
+        className={`bg-white p-2 border-2 border-black px-4 rounded-2xl flex justify-between items-center relative`}
       >
+        <div
+          className={`absolute z-20 left-12 top-20 bg-white  ${
+            menuClicked
+              ? ""
+              : "-translate-x-[150%] rounded-r-[100%] overflow-x-hidden"
+          } transition-all duration-1000`}
+        >
+          <SlidingMenu />
+        </div>
         <div className="left flex gap-2 items-center">
           <div
             className="hamburger cursor-pointer active:bg-[var(--black25)] p-2 rounded-full"

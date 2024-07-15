@@ -7,7 +7,7 @@ import { MdOutlineBookmarkBorder, MdOutlineEdit } from "react-icons/md";
 import PrimaryBtn from "../Primary Btn/PrimaryBtn";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
+const SlidingMenu = memo(() => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const [edit, setEdit] = useState(false);
@@ -44,11 +44,7 @@ const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
 
   return (
     <div
-      className={`menuContainer text-xs sm:text-[1em] select-none w-fit max-w-72 p-4 rounded-3xl text-center flex flex-col items-center sm:gap-2 gap-1 customShadowForQuizCard absolute z-20 left-12 top-24 bg-white  ${
-        menuClicked
-          ? ""
-          : "-translate-x-[120%] rounded-r-[100%] overflow-x-hidden"
-      } transition-all duration-1000`}
+      className={`menuContainer text-xs sm:text-[1em] select-none w-fit max-w-72 p-4 rounded-3xl text-center flex flex-col items-center sm:gap-2 gap-1 customShadowForQuizCard`}
     >
       <div
         className="profilePic p-4 rounded-full profilePicShadow relative transition-shadow duration-700"
@@ -64,7 +60,7 @@ const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
         </div>
         <div
           className={`profileActions bg-white rounded-xl absolute shadow-2xl left-1/2 -translate-x-1/2 top-36 w-36 overflow-hidden cursor-pointer ${
-            menuClicked ? (edit ? "" : "hidden") : "hidden"
+            edit ? "" : "hidden"
           }`}
         >
           {editOptions.map((elem) => {
@@ -132,7 +128,10 @@ const SlidingMenu = memo(({ menuClicked, setMenuClicked }) => {
         <div className="attemptListFromHistory text-left sm:gap-1 sm:text-sm font-sans">
           {recentAttempts.map((elem, index) => {
             return (
-              <p className="cursor-pointer hover:bg-gray-200 transition-colors duration-200 pl-2 rounded-md line-clamp-1 w-full" key={index}>
+              <p
+                className="cursor-pointer hover:bg-gray-200 transition-colors duration-200 pl-2 rounded-md line-clamp-1 w-full"
+                key={index}
+              >
                 {elem}
               </p>
             );
